@@ -51,13 +51,13 @@ public class ContactBuilder {
         private List<Phone> phoneList = new ArrayList<>();
         
         public ContactPanel() {
-            NAME = "";
-            COMPANY = "";
-            EMAIL = "";
-            ADDRESS = "";
-            CITY = "";
-            STATE = "";
-            ZIPCODE = "";
+            NAME = null;
+            COMPANY = null;
+            EMAIL = null;
+            ADDRESS = null;
+            CITY = null;
+            STATE = null;
+            ZIPCODE = null;
             initComponents();
         }
         public ContactPanel(Contact contact) {
