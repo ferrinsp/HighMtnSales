@@ -393,16 +393,14 @@ public class CRMGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_strSearchBarMouseClicked
 
     private void newContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newContactButtonActionPerformed
+        // TODO add your handling code here:
         ContactBuilder contact = new ContactBuilder(this);
         contact.createContactBuilder(null);
-//        Contact newContact = contact.getInformation();
-//        if(newContact != null){
-//            updateCurrent(newContact);
-//            //commonEnemies.add(newContact);
-//            updateModel(newContact.getType());
-//        }
     }//GEN-LAST:event_newContactButtonActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
