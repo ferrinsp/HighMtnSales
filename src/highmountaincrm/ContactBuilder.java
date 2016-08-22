@@ -16,7 +16,9 @@ public class ContactBuilder {
     public ContactBuilder(JFrame c){
         parent = c;
     }
-
+    public Contact getContact(){
+        return contact;
+    }
     public void createContactBuilder(Contact contact){
         this.parent = parent;
         dialog = new JDialog(parent, "New Contact", true);
@@ -510,6 +512,7 @@ public class ContactBuilder {
         contact.setState(stateField.getText());
         contact.setZipCode(zipField.getText());
         contact.setPhoneList(phoneList);
+        dialog.dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -600,6 +603,7 @@ public class ContactBuilder {
 }
     public static void main(String []args){
         JFrame dave = new JFrame();
+        dave.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ContactBuilder bob = new ContactBuilder(dave);
     }
 }

@@ -11,23 +11,23 @@ package highmountaincrm.Classes;
  */
 public class Order {
 
-	public int numOrder;
+	public int orderId;
 	public int orderAmount;
-	public String orderNotes;
+	public String orderNote;
 	
-	public int getNumOrders(){
-		return this.numOrder;
+	public int getOrderId(){
+		return this.orderId;
 	}
 	public int getOrderAmount(){
 		return this.orderAmount;
 	}
-	public String getOrderNotes(){
-		return this.orderNotes;
+	public String getOrderNote(){
+		return this.orderNote;
 	}
 	
 	public Order (int numOrder, int orderAmount, String orderNotes) {
-		this.numOrder = numOrder;
+		this.orderId = numOrder;
 		this.orderAmount = orderAmount;
-		this.orderNotes = orderNotes;
+		this.orderNote = orderNotes;
 	}
 }

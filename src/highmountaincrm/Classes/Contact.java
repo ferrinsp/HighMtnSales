@@ -15,7 +15,8 @@ public class Contact {
 	public String customerNotes;
 		
 	List<Phone> phoneList = new ArrayList<>();
-
+        private List<Order> orderList = new ArrayList<>();
+        
 	public String getName(){
 		return name;
 	}
@@ -71,6 +72,16 @@ public class Contact {
         public void setPhoneList(List<Phone> phoneList){
             this.phoneList = phoneList;
         }
+        public List<Phone> getPhoneList(){
+            return phoneList;
+        }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
 }
 
 
