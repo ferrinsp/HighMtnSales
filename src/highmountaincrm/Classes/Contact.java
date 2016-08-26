@@ -13,7 +13,9 @@ public class Contact {
 	public String zipCode;	
 	public String email;
 	public String notes;
-		
+        public String searchable;
+        private static int columnLength = 30;
+        
 	private List<Phone> phoneList = new ArrayList<>();
         private List<Order> orderList = new ArrayList<>();
         
@@ -38,36 +40,42 @@ public class Contact {
 	public String getEmail(){
 		return email;
 	}
-	public String getCustomerNotes(){
+	public String getNote(){
 		return notes;
 	}
 	public Phone getPhoneNumbers(int index) {
 		return phoneList.get(index);
 	}
-	
+
 	public void setName(String setName){
 		name = setName;
+                Contact.updateLength(name.length());
+                updateSearch();
 	}
 	public void setCompany(String setCompanyName){
 		company = setCompanyName;
+                updateSearch();
 	}
 	public void setAddress(String setAddress){
 		address = setAddress;
 	}
 	public void setCity(String setCity){
 		city = setCity;
+                updateSearch();
 	}
 	public void setState(String setState){
 		state = setState;
 	}
 	public void setZipCode(String setZipCode){
 		zipCode = setZipCode;
+                updateSearch();
 	}	
-	public void setEmail(String setCustomerEmail){
-		email = setCustomerEmail;
+	public void setEmail(String setEmail){
+		email = setEmail;
+                updateSearch();
 	}
-	public void setCustomerNotes(String setCustomerNotes) {
-		notes = setCustomerNotes;
+	public void setNote(String setNote) {
+		notes = setNote;
 	}
         public void setPhoneList(List<Phone> phoneList){
             this.phoneList = phoneList;
@@ -75,13 +83,23 @@ public class Contact {
         public List<Phone> getPhoneList(){
             return phoneList;
         }
-
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
+        public List<Order> getOrderList() {
+            return orderList;
+        }
+        public void setOrderList(List<Order> orderList) {
+            this.orderList = orderList;
+        }
+        public String toString(){
+            return name + "      " + company;
+        }
+        public void updateSearch() {
+            searchable = name + company + email + city + zipCode;
+        }
+        public static void updateLength(int contactLength) {
+            if(contactLength + 6 > columnLength) {
+                columnLength = contactLength + 6;
+            }
+        }
 }
 
 

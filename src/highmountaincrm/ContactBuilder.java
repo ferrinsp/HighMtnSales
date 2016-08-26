@@ -97,12 +97,12 @@ public class ContactBuilder {
         filler21 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         phoneLabel = new javax.swing.JLabel();
         phoneField = new javax.swing.JTextField();
-        phoneComboBox = new javax.swing.JComboBox<String>();
+        phoneComboBox = new javax.swing.JComboBox<>();
         addPhone = new javax.swing.JButton();
         filler22 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler25 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<Phone>();
+        jList1 = new javax.swing.JList<>();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         eastPanel = new javax.swing.JPanel();
@@ -267,7 +267,7 @@ public class ContactBuilder {
         addressField.setMaximumSize(new java.awt.Dimension(200, 30));
         addressField.setMinimumSize(new java.awt.Dimension(200, 30));
         addressField.setName(""); // NOI18N
-        addressField.setNextFocusableComponent(stateField);
+        addressField.setNextFocusableComponent(cityField);
         addressField.setPreferredSize(new java.awt.Dimension(200, 30));
         addressPanel.add(addressField);
         addressPanel.add(filler27);
@@ -374,7 +374,7 @@ public class ContactBuilder {
         phoneField.setPreferredSize(new java.awt.Dimension(165, 30));
         phoneNorthPanel.add(phoneField);
 
-        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
+        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
         phoneComboBox.setNextFocusableComponent(addPhone);
         phoneNorthPanel.add(phoneComboBox);
 
@@ -465,7 +465,7 @@ public class ContactBuilder {
         southPanel.add(filler1);
 
         saveButton.setBackground(new java.awt.Color(0, 0, 102));
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setForeground(new java.awt.Color(0, 0, 102));
         saveButton.setText("Save");
         saveButton.setToolTipText("Click to save contact information");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -477,7 +477,7 @@ public class ContactBuilder {
         southPanel.add(filler2);
 
         cancelButton.setBackground(new java.awt.Color(102, 0, 0));
-        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setForeground(new java.awt.Color(102, 0, 0));
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

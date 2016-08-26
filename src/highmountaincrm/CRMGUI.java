@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 public class CRMGUI extends javax.swing.JFrame {
-    //public static List<Contact> contacts = new ArrayList<>();
-    //public static DefaultListModel<Contact> contactModel = new DefaultListModel<>();
     public Color genericColor = new Color(209, 220, 204);    
     private AlternatingListCellRenderer cellRenderer = new AlternatingListCellRenderer();
     
@@ -42,7 +40,7 @@ public class CRMGUI extends javax.swing.JFrame {
         strSearchBar = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<Contact>();
+        contactJList = new javax.swing.JList<>();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -73,11 +71,11 @@ public class CRMGUI extends javax.swing.JFrame {
         strEmail = new javax.swing.JLabel();
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<Phone>();
+        phoneJList = new javax.swing.JList<>();
         orderTab = new javax.swing.JPanel();
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<Order>();
+        orderJList = new javax.swing.JList<>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -471,15 +469,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-
-        if (clientDisplay.getTabCount() == 1)
-        {
-            clientDisplay.addTab("Order Info", new javax.swing.ImageIcon(getClass().getResource("/Resource/order.png")), orderTab);
-            clientDisplay.addTab("Notes", new javax.swing.ImageIcon(getClass().getResource("/Resource/note.png")), notesTab);
-        } else{
-            clientDisplay.removeTabAt(2);
-            clientDisplay.removeTabAt(1);
-        }
+        // update column length on contact 
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void lblTitlebarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTitlebarActionPerformed
@@ -536,7 +526,7 @@ public class CRMGUI extends javax.swing.JFrame {
         strState.setText(currentContact.getState());
         strZipCode.setText(currentContact.getZipCode());
         strEmail.setText(currentContact.getEmail());
-        noteTextArea.setText(currentContact.getCustomerNotes());
+        noteTextArea.setText(currentContact.getNote());
         
         if(!phoneModel.isEmpty()) phoneModel.clear();
         if(!phoneList.isEmpty()) phoneList.clear();

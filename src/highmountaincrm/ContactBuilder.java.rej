@@ -1,0 +1,70 @@
+diff a/src/highmountaincrm/ContactBuilder.java b/src/highmountaincrm/ContactBuilder.java	(rejected hunks)
+@@ -16,65 +16,24 @@
+     public ContactBuilder(JFrame c){
+         parent = c;
+     }
+-    
++
+     public void createContactBuilder(Contact contact){
+-        if(contact == null) {
+-            dialog = new JDialog(parent, "New Contact", true);
+-            dialog.setContentPane(new ContactPanel());
+-        } else {
+-            dialog = new JDialog(parent, "Edit Contact", true);
+-            dialog.setContentPane(new ContactPanel(contact));
+-        }
+         this.parent = parent;
++        dialog = new JDialog(parent, "New Contact", true);
++        dialog.setContentPane(new ContactPanel());
+         dialog.setResizable(false);
+         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+         dialog.pack();
+         dialog.setLocationRelativeTo(parent);
+         dialog.setVisible(true);
+     }
+-    
+-    public Contact getInformation(){
+-        return information;
+-    }
+-    
+     public class ContactPanel extends javax.swing.JPanel {
+         private AlternatingListCellRenderer cellRenderer = new AlternatingListCellRenderer();
+         private DefaultListModel<Phone> phoneModel = new DefaultListModel<>();
+         
+-        final String NAME;
+-        final String COMPANY;
+-        final String EMAIL;
+-        final String ADDRESS;
+-        final String CITY;
+-        final String STATE;
+-        final String ZIPCODE;   
+         private List<Phone> phoneList = new ArrayList<>();
+-        
+         public ContactPanel() {
+-            NAME = null;
+-            COMPANY = null;
+-            EMAIL = null;
+-            ADDRESS = null;
+-            CITY = null;
+-            STATE = null;
+-            ZIPCODE = null;
+-            initComponents();
+-        }
+-        public ContactPanel(Contact contact) {
+-            NAME = contact.getName();
+-            COMPANY = contact.getCompanyName();
+-            EMAIL = contact.getCustomerEmail();
+-            ADDRESS = contact.getAddress();
+-            CITY = contact.getCity();
+-            STATE = contact.getState();
+-            ZIPCODE = contact.getZipCode();
+-            nameField.setText(contact.getName());
+             initComponents();
+-//            if(contact.getPhoneNumbers() != null)
+-//                for(String s: contact.getPhoneNumbers()){
+-//                    contact.add(s);
+-//                    phoneModel.addElement(s);
+-//            }
+         }
+ 
+     @SuppressWarnings("unchecked")

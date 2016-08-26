@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package highmountaincrm.Classes;
 
-/**
- *
- * @author ferrinsp
- */
 public class Order {
 
 	public int orderId;
@@ -25,9 +16,9 @@ public class Order {
 		return this.orderNote;
 	}
 	
-	public Order (int numOrder, int orderAmount, String orderNotes) {
+	public Order (int numOrder, int orderAmount, String orderNote) {
 		this.orderId = numOrder;
 		this.orderAmount = orderAmount;
-		this.orderNote = orderNotes;
+		this.orderNote = orderNote;
 	}
 }
