@@ -79,7 +79,24 @@ public class CRMGUI extends javax.swing.JFrame {
         orderScrollPane = new javax.swing.JScrollPane();
         orderJList = new javax.swing.JList<Order>();
         orderButtonPanel = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        newOrderButton = new javax.swing.JButton();
+        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        editOrderButton = new javax.swing.JButton();
+        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         clearOrderButton = new javax.swing.JButton();
+        filler15 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        orderNotesPanel = new javax.swing.JPanel();
+        orderInfoPanel = new javax.swing.JPanel();
+        orderIdLabel = new javax.swing.JLabel();
+        orderIdDisplay = new javax.swing.JLabel();
+        orderAmountLabel = new javax.swing.JLabel();
+        orderAmountDisplay = new javax.swing.JLabel();
+        filler16 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jScrollPane1 = new javax.swing.JScrollPane();
+        orderNotesTextArea = new javax.swing.JTextArea();
+        orderNotesButtonPanel = new javax.swing.JPanel();
+        clearOrderNotesButton = new javax.swing.JButton();
         notesTab = new javax.swing.JPanel();
         notesDetailPanel = new javax.swing.JPanel();
         noteScrollPane = new javax.swing.JScrollPane();
@@ -96,8 +113,9 @@ public class CRMGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
-        setMinimumSize(new java.awt.Dimension(950, 500));
-        setPreferredSize(new java.awt.Dimension(950, 500));
+        setMaximumSize(new java.awt.Dimension(950, 600));
+        setMinimumSize(new java.awt.Dimension(950, 600));
+        setPreferredSize(new java.awt.Dimension(950, 600));
 
         titleBar.setMaximumSize(new java.awt.Dimension(800, 30));
         titleBar.setMinimumSize(new java.awt.Dimension(800, 30));
@@ -169,7 +187,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
         deleteButton.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setForeground(new java.awt.Color(102, 0, 0));
         deleteButton.setText("Remove");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +199,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         newContactButton.setBackground(new java.awt.Color(0, 0, 102));
         newContactButton.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
-        newContactButton.setForeground(new java.awt.Color(255, 255, 255));
+        newContactButton.setForeground(new java.awt.Color(0, 0, 102));
         newContactButton.setText("New");
         newContactButton.setPreferredSize(new java.awt.Dimension(83, 23));
         newContactButton.addActionListener(new java.awt.event.ActionListener() {
@@ -285,12 +303,14 @@ public class CRMGUI extends javax.swing.JFrame {
 
         clientDisplay.addTab("Client Info", new javax.swing.ImageIcon(getClass().getResource("/Resource/clientIcon.png")), clientInfoTab); // NOI18N
 
-        orderTab.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Order Detail:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
         orderTab.setPreferredSize(new java.awt.Dimension(240, 360));
-        orderTab.setLayout(new java.awt.BorderLayout());
+        orderTab.setLayout(new javax.swing.BoxLayout(orderTab, javax.swing.BoxLayout.Y_AXIS));
 
-        orderInfoDetailPanel.setMinimumSize(new java.awt.Dimension(283, 410));
-        orderInfoDetailPanel.setPreferredSize(new java.awt.Dimension(283, 410));
+        orderInfoDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "List of Orders"));
+        orderInfoDetailPanel.setAutoscrolls(true);
+        orderInfoDetailPanel.setMinimumSize(new java.awt.Dimension(283, 40));
+        orderInfoDetailPanel.setName(""); // NOI18N
+        orderInfoDetailPanel.setPreferredSize(new java.awt.Dimension(283, 245));
         orderInfoDetailPanel.setLayout(new javax.swing.BoxLayout(orderInfoDetailPanel, javax.swing.BoxLayout.Y_AXIS));
 
         orderScrollPane.setMaximumSize(new java.awt.Dimension(32767, 200));
@@ -299,20 +319,75 @@ public class CRMGUI extends javax.swing.JFrame {
         orderJList.setModel(orderModel);
         orderJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         orderJList.setMaximumSize(new java.awt.Dimension(20, 250));
-        orderJList.setMinimumSize(new java.awt.Dimension(20, 200));
-        orderJList.setPreferredSize(new java.awt.Dimension(20, 250));
+        orderJList.setMinimumSize(new java.awt.Dimension(20, 80));
+        orderJList.setPreferredSize(new java.awt.Dimension(20, 80));
         orderScrollPane.setViewportView(orderJList);
 
         orderInfoDetailPanel.add(orderScrollPane);
 
         orderButtonPanel.setLayout(new javax.swing.BoxLayout(orderButtonPanel, javax.swing.BoxLayout.LINE_AXIS));
+        orderButtonPanel.add(filler1);
 
-        clearOrderButton.setText("Clear");
+        newOrderButton.setText("New");
+        newOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newOrderButtonActionPerformed(evt);
+            }
+        });
+        orderButtonPanel.add(newOrderButton);
+        orderButtonPanel.add(filler8);
+
+        editOrderButton.setText("Edit");
+        orderButtonPanel.add(editOrderButton);
+        orderButtonPanel.add(filler11);
+
+        clearOrderButton.setText("Remove");
         orderButtonPanel.add(clearOrderButton);
+        orderButtonPanel.add(filler15);
 
         orderInfoDetailPanel.add(orderButtonPanel);
 
-        orderTab.add(orderInfoDetailPanel, java.awt.BorderLayout.NORTH);
+        orderTab.add(orderInfoDetailPanel);
+
+        orderNotesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Order Notes"));
+        orderNotesPanel.setLayout(new javax.swing.BoxLayout(orderNotesPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        orderInfoPanel.setLayout(new javax.swing.BoxLayout(orderInfoPanel, javax.swing.BoxLayout.LINE_AXIS));
+
+        orderIdLabel.setText("Order Number:");
+        orderInfoPanel.add(orderIdLabel);
+
+        orderIdDisplay.setMaximumSize(new java.awt.Dimension(72, 14));
+        orderIdDisplay.setMinimumSize(new java.awt.Dimension(72, 14));
+        orderIdDisplay.setPreferredSize(new java.awt.Dimension(72, 14));
+        orderInfoPanel.add(orderIdDisplay);
+
+        orderAmountLabel.setText("Order Amount:");
+        orderInfoPanel.add(orderAmountLabel);
+        orderInfoPanel.add(orderAmountDisplay);
+        orderInfoPanel.add(filler16);
+
+        orderNotesPanel.add(orderInfoPanel);
+
+        orderNotesTextArea.setColumns(20);
+        orderNotesTextArea.setRows(5);
+        jScrollPane1.setViewportView(orderNotesTextArea);
+
+        orderNotesPanel.add(jScrollPane1);
+
+        orderNotesButtonPanel.setLayout(new javax.swing.BoxLayout(orderNotesButtonPanel, javax.swing.BoxLayout.LINE_AXIS));
+
+        clearOrderNotesButton.setText("Clear");
+        clearOrderNotesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearOrderNotesButtonActionPerformed(evt);
+            }
+        });
+        orderNotesButtonPanel.add(clearOrderNotesButton);
+
+        orderNotesPanel.add(orderNotesButtonPanel);
+
+        orderTab.add(orderNotesPanel);
 
         clientDisplay.addTab("Order Info", new javax.swing.ImageIcon(getClass().getResource("/Resource/order.png")), orderTab); // NOI18N
 
@@ -350,7 +425,7 @@ public class CRMGUI extends javax.swing.JFrame {
             notesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notesTabLayout.createSequentialGroup()
                 .addComponent(notesDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
 
         clientDisplay.addTab("Notes", new javax.swing.ImageIcon(getClass().getResource("/Resource/note.png")), notesTab); // NOI18N
@@ -396,6 +471,15 @@ public class CRMGUI extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+
+        if (clientDisplay.getTabCount() == 1)
+        {
+            clientDisplay.addTab("Order Info", new javax.swing.ImageIcon(getClass().getResource("/Resource/order.png")), orderTab);
+            clientDisplay.addTab("Notes", new javax.swing.ImageIcon(getClass().getResource("/Resource/note.png")), notesTab);
+        } else{
+            clientDisplay.removeTabAt(2);
+            clientDisplay.removeTabAt(1);
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void lblTitlebarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTitlebarActionPerformed
@@ -428,6 +512,14 @@ public class CRMGUI extends javax.swing.JFrame {
         currentContact = contactJList.getSelectedValue();
         displayCurrent();
     }//GEN-LAST:event_contactJListValueChanged
+
+    private void clearOrderNotesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearOrderNotesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clearOrderNotesButtonActionPerformed
+
+    private void newOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newOrderButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newOrderButtonActionPerformed
     
     public void updateCurrent(Contact c){
         currentContact = c;
@@ -438,12 +530,12 @@ public class CRMGUI extends javax.swing.JFrame {
         if(currentContact == null) return;
         
         strClientName.setText(currentContact.getName());
-        strCompany.setText(currentContact.getCompanyName());
+        strCompany.setText(currentContact.getCompany());
         strAddress.setText(currentContact.getAddress());
         strCity.setText(currentContact.getCity());
         strState.setText(currentContact.getState());
         strZipCode.setText(currentContact.getZipCode());
-        strEmail.setText(currentContact.getCustomerEmail());
+        strEmail.setText(currentContact.getEmail());
         noteTextArea.setText(currentContact.getCustomerNotes());
         
         if(!phoneModel.isEmpty()) phoneModel.clear();
@@ -500,6 +592,7 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton clearNoteButton;
     private javax.swing.JButton clearOrderButton;
+    private javax.swing.JButton clearOrderNotesButton;
     private javax.swing.JTabbedPane clientDisplay;
     private javax.swing.JPanel clientInfoLabelPanel;
     private javax.swing.JPanel clientInfoPanel;
@@ -507,17 +600,24 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JList<Contact> contactJList;
     private javax.swing.JScrollPane contactScrollPane;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editOrderButton;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler10;
+    private javax.swing.Box.Filler filler11;
     private javax.swing.Box.Filler filler12;
     private javax.swing.Box.Filler filler13;
     private javax.swing.Box.Filler filler14;
+    private javax.swing.Box.Filler filler15;
+    private javax.swing.Box.Filler filler16;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;
     private javax.swing.Box.Filler filler7;
+    private javax.swing.Box.Filler filler8;
     private javax.swing.Box.Filler filler9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblClientName;
@@ -533,14 +633,23 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenuItem menuNewClient;
     private javax.swing.JButton newContactButton;
+    private javax.swing.JButton newOrderButton;
     private javax.swing.JPanel noteButtonPanel;
     private javax.swing.JScrollPane noteScrollPane;
     private javax.swing.JTextArea noteTextArea;
     private javax.swing.JPanel notesDetailPanel;
     private javax.swing.JPanel notesTab;
+    private javax.swing.JLabel orderAmountDisplay;
+    private javax.swing.JLabel orderAmountLabel;
     private javax.swing.JPanel orderButtonPanel;
+    private javax.swing.JLabel orderIdDisplay;
+    private javax.swing.JLabel orderIdLabel;
     private javax.swing.JPanel orderInfoDetailPanel;
+    private javax.swing.JPanel orderInfoPanel;
     private javax.swing.JList<Order> orderJList;
+    private javax.swing.JPanel orderNotesButtonPanel;
+    private javax.swing.JPanel orderNotesPanel;
+    private javax.swing.JTextArea orderNotesTextArea;
     private javax.swing.JScrollPane orderScrollPane;
     private javax.swing.JPanel orderTab;
     private javax.swing.JList<Phone> phoneJList;

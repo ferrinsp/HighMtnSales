@@ -73,18 +73,18 @@ public class ContactBuilder {
         addressField = new javax.swing.JTextField();
         filler27 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler28 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
-        statePanel = new javax.swing.JPanel();
-        filler29 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
-        stateLabel = new javax.swing.JLabel();
-        stateField = new javax.swing.JTextField();
-        filler30 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
-        filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         cityPanel = new javax.swing.JPanel();
         filler32 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         cityLabel = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         filler33 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler34 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
+        statePanel = new javax.swing.JPanel();
+        filler29 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
+        stateLabel = new javax.swing.JLabel();
+        stateField = new javax.swing.JTextField();
+        filler30 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
+        filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         zipPanel = new javax.swing.JPanel();
         filler19 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         zipLabel = new javax.swing.JLabel();
@@ -97,12 +97,12 @@ public class ContactBuilder {
         filler21 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         phoneLabel = new javax.swing.JLabel();
         phoneField = new javax.swing.JTextField();
-        phoneComboBox = new javax.swing.JComboBox<>();
+        phoneComboBox = new javax.swing.JComboBox<String>();
         addPhone = new javax.swing.JButton();
         filler22 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler25 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<Phone>();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         eastPanel = new javax.swing.JPanel();
@@ -275,30 +275,6 @@ public class ContactBuilder {
         westPanel.add(addressPanel);
         westPanel.add(filler28);
 
-        statePanel.setBackground(new java.awt.Color(51, 51, 51));
-        statePanel.setLayout(new javax.swing.BoxLayout(statePanel, javax.swing.BoxLayout.LINE_AXIS));
-        statePanel.add(filler29);
-
-        stateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        stateLabel.setForeground(new java.awt.Color(255, 255, 255));
-        stateLabel.setText("State:");
-        stateLabel.setMaximumSize(new java.awt.Dimension(80, 28));
-        stateLabel.setPreferredSize(new java.awt.Dimension(80, 28));
-        statePanel.add(stateLabel);
-
-        stateField.setBackground(new java.awt.Color(51, 51, 51));
-        stateField.setForeground(new java.awt.Color(255, 255, 255));
-        stateField.setMaximumSize(new java.awt.Dimension(200, 30));
-        stateField.setMinimumSize(new java.awt.Dimension(200, 30));
-        stateField.setName(""); // NOI18N
-        stateField.setNextFocusableComponent(cityField);
-        stateField.setPreferredSize(new java.awt.Dimension(200, 30));
-        statePanel.add(stateField);
-        statePanel.add(filler30);
-
-        westPanel.add(statePanel);
-        westPanel.add(filler31);
-
         cityPanel.setBackground(new java.awt.Color(51, 51, 51));
         cityPanel.setLayout(new javax.swing.BoxLayout(cityPanel, javax.swing.BoxLayout.LINE_AXIS));
         cityPanel.add(filler32);
@@ -315,13 +291,37 @@ public class ContactBuilder {
         cityField.setMaximumSize(new java.awt.Dimension(200, 30));
         cityField.setMinimumSize(new java.awt.Dimension(200, 30));
         cityField.setName(""); // NOI18N
-        cityField.setNextFocusableComponent(zipField);
+        cityField.setNextFocusableComponent(stateField);
         cityField.setPreferredSize(new java.awt.Dimension(200, 30));
         cityPanel.add(cityField);
         cityPanel.add(filler33);
 
         westPanel.add(cityPanel);
         westPanel.add(filler34);
+
+        statePanel.setBackground(new java.awt.Color(51, 51, 51));
+        statePanel.setLayout(new javax.swing.BoxLayout(statePanel, javax.swing.BoxLayout.LINE_AXIS));
+        statePanel.add(filler29);
+
+        stateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        stateLabel.setText("State:");
+        stateLabel.setMaximumSize(new java.awt.Dimension(80, 28));
+        stateLabel.setPreferredSize(new java.awt.Dimension(80, 28));
+        statePanel.add(stateLabel);
+
+        stateField.setBackground(new java.awt.Color(51, 51, 51));
+        stateField.setForeground(new java.awt.Color(255, 255, 255));
+        stateField.setMaximumSize(new java.awt.Dimension(200, 30));
+        stateField.setMinimumSize(new java.awt.Dimension(200, 30));
+        stateField.setName(""); // NOI18N
+        stateField.setNextFocusableComponent(zipField);
+        stateField.setPreferredSize(new java.awt.Dimension(200, 30));
+        statePanel.add(stateField);
+        statePanel.add(filler30);
+
+        westPanel.add(statePanel);
+        westPanel.add(filler31);
 
         zipPanel.setBackground(new java.awt.Color(51, 51, 51));
         zipPanel.setLayout(new javax.swing.BoxLayout(zipPanel, javax.swing.BoxLayout.LINE_AXIS));
@@ -374,7 +374,7 @@ public class ContactBuilder {
         phoneField.setPreferredSize(new java.awt.Dimension(165, 30));
         phoneNorthPanel.add(phoneField);
 
-        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
+        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
         phoneComboBox.setNextFocusableComponent(addPhone);
         phoneNorthPanel.add(phoneComboBox);
 
@@ -505,8 +505,8 @@ public class ContactBuilder {
         }
         contact = new Contact();
         contact.setName(nameField.getText());
-        contact.setCompanyName(companyField.getText());
-        contact.setCustomerEmail(emailField.getText());
+        contact.setCompany(companyField.getText());
+        contact.setEmail(emailField.getText());
         contact.setAddress(addressField.getText());
         contact.setCity(cityField.getText());
         contact.setState(stateField.getText());
