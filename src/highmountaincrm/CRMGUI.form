@@ -49,6 +49,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="New Customer"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNewClientActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -193,7 +196,7 @@
                 <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.VerticalGlue"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="strSearchBar">
+            <Component class="javax.swing.JTextField" name="searchField">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Search"/>
                 <Property name="alignmentX" type="float" value="1.0"/>
@@ -210,8 +213,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strSearchBarMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="strSearchBarActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchFieldMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchFieldKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.Box$Filler" name="filler6">
@@ -518,6 +521,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strClientNameMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="strCompany">
                           <Properties>
@@ -528,6 +534,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strCompanyMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="strAddress">
                           <Properties>
@@ -538,6 +547,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strAddressMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="strCity">
                           <Properties>
@@ -548,6 +560,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strCityMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="strState">
                           <Properties>
@@ -558,6 +573,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strStateMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="strZipCode">
                           <Properties>
@@ -568,6 +586,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strZipCodeMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="strEmail">
                           <Properties>
@@ -578,6 +599,9 @@
                               <Dimension value="[175, 14]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="strEmailMouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

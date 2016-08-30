@@ -97,12 +97,12 @@ public class ContactBuilder {
         filler21 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         phoneLabel = new javax.swing.JLabel();
         phoneField = new javax.swing.JTextField();
-        phoneComboBox = new javax.swing.JComboBox<>();
+        phoneComboBox = new javax.swing.JComboBox<String>();
         addPhone = new javax.swing.JButton();
         filler22 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler25 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<Phone>();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         eastPanel = new javax.swing.JPanel();
@@ -216,6 +216,7 @@ public class ContactBuilder {
 
         companyField.setBackground(new java.awt.Color(51, 51, 51));
         companyField.setForeground(new java.awt.Color(255, 255, 255));
+        companyField.setCaretColor(new java.awt.Color(255, 255, 255));
         companyField.setMaximumSize(new java.awt.Dimension(200, 30));
         companyField.setMinimumSize(new java.awt.Dimension(200, 30));
         companyField.setName(""); // NOI18N
@@ -240,6 +241,7 @@ public class ContactBuilder {
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
         emailField.setForeground(new java.awt.Color(255, 255, 255));
+        emailField.setCaretColor(new java.awt.Color(255, 255, 255));
         emailField.setMaximumSize(new java.awt.Dimension(200, 30));
         emailField.setMinimumSize(new java.awt.Dimension(200, 30));
         emailField.setName(""); // NOI18N
@@ -264,6 +266,7 @@ public class ContactBuilder {
 
         addressField.setBackground(new java.awt.Color(51, 51, 51));
         addressField.setForeground(new java.awt.Color(255, 255, 255));
+        addressField.setCaretColor(new java.awt.Color(255, 255, 255));
         addressField.setMaximumSize(new java.awt.Dimension(200, 30));
         addressField.setMinimumSize(new java.awt.Dimension(200, 30));
         addressField.setName(""); // NOI18N
@@ -288,6 +291,7 @@ public class ContactBuilder {
 
         cityField.setBackground(new java.awt.Color(51, 51, 51));
         cityField.setForeground(new java.awt.Color(255, 255, 255));
+        cityField.setCaretColor(new java.awt.Color(255, 255, 255));
         cityField.setMaximumSize(new java.awt.Dimension(200, 30));
         cityField.setMinimumSize(new java.awt.Dimension(200, 30));
         cityField.setName(""); // NOI18N
@@ -312,6 +316,7 @@ public class ContactBuilder {
 
         stateField.setBackground(new java.awt.Color(51, 51, 51));
         stateField.setForeground(new java.awt.Color(255, 255, 255));
+        stateField.setCaretColor(new java.awt.Color(255, 255, 255));
         stateField.setMaximumSize(new java.awt.Dimension(200, 30));
         stateField.setMinimumSize(new java.awt.Dimension(200, 30));
         stateField.setName(""); // NOI18N
@@ -336,6 +341,7 @@ public class ContactBuilder {
 
         zipField.setBackground(new java.awt.Color(51, 51, 51));
         zipField.setForeground(new java.awt.Color(255, 255, 255));
+        zipField.setCaretColor(new java.awt.Color(255, 255, 255));
         zipField.setMaximumSize(new java.awt.Dimension(200, 30));
         zipField.setMinimumSize(new java.awt.Dimension(200, 30));
         zipField.setName(""); // NOI18N
@@ -367,14 +373,20 @@ public class ContactBuilder {
 
         phoneField.setBackground(new java.awt.Color(51, 51, 51));
         phoneField.setForeground(new java.awt.Color(255, 255, 255));
+        phoneField.setCaretColor(new java.awt.Color(255, 255, 255));
         phoneField.setMaximumSize(new java.awt.Dimension(165, 30));
         phoneField.setMinimumSize(new java.awt.Dimension(165, 30));
         phoneField.setName(""); // NOI18N
         phoneField.setNextFocusableComponent(phoneComboBox);
         phoneField.setPreferredSize(new java.awt.Dimension(165, 30));
+        phoneField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneFieldActionPerformed(evt);
+            }
+        });
         phoneNorthPanel.add(phoneField);
 
-        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
+        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
         phoneComboBox.setNextFocusableComponent(addPhone);
         phoneNorthPanel.add(phoneComboBox);
 
@@ -494,6 +506,7 @@ public class ContactBuilder {
         Phone phone = new Phone(phoneField.getText(), (String)phoneComboBox.getSelectedItem());
         phoneModel.addElement(phone);
         phoneList.add(phone);
+        phoneField.setText("");
     }//GEN-LAST:event_addPhoneActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -522,6 +535,10 @@ public class ContactBuilder {
     private void addPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addPhoneKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_addPhoneKeyTyped
+
+    private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
+        addPhoneActionPerformed(evt);
+    }//GEN-LAST:event_phoneFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

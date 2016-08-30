@@ -89,6 +89,7 @@ public class Contact {
         public void setOrderList(List<Order> orderList) {
             this.orderList = orderList;
         }
+        @Override
         public String toString(){
             return name + "      " + company;
         }

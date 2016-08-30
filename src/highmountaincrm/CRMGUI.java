@@ -5,20 +5,22 @@ import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class CRMGUI extends javax.swing.JFrame {
     public Color genericColor = new Color(209, 220, 204);    
     private AlternatingListCellRenderer cellRenderer = new AlternatingListCellRenderer();
     
     private Contact currentContact;
-    
+    private Order currentOrder;
     // Declare and initialize list models for JLists
-    private DefaultListModel<Contact> contactModel = new DefaultListModel<>();
+    private DefaultListModel<Contact> contactModel = new DefaultListModel<>(); // Blessed be the diamond operator
     private DefaultListModel<Phone> phoneModel = new DefaultListModel<>();
     private DefaultListModel<Order> orderModel = new DefaultListModel<>();
     private DefaultListModel<String> noteModel = new DefaultListModel<>();
     // Declare and initialize lists 
-    private List<Contact> contactList = new ArrayList<>();
+    private List<Contact> contactList = new ArrayList<>(); 
+    private List<Contact> searchList = new ArrayList<>();
     private List<Phone> phoneList = new ArrayList<>();
     private List<Order> orderList = new ArrayList<>();
     private List<String> noteList = new ArrayList<>();
@@ -37,10 +39,10 @@ public class CRMGUI extends javax.swing.JFrame {
         filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         leftPanel = new javax.swing.JPanel();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
-        strSearchBar = new javax.swing.JTextField();
+        searchField = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<>();
+        contactJList = new javax.swing.JList<Contact>();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -71,11 +73,11 @@ public class CRMGUI extends javax.swing.JFrame {
         strEmail = new javax.swing.JLabel();
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<>();
+        phoneJList = new javax.swing.JList<Phone>();
         orderTab = new javax.swing.JPanel();
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<>();
+        orderJList = new javax.swing.JList<Order>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -145,22 +147,22 @@ public class CRMGUI extends javax.swing.JFrame {
         leftPanel.setLayout(new javax.swing.BoxLayout(leftPanel, javax.swing.BoxLayout.Y_AXIS));
         leftPanel.add(filler7);
 
-        strSearchBar.setText("Search");
-        strSearchBar.setAlignmentX(1.0F);
-        strSearchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        strSearchBar.setMaximumSize(new java.awt.Dimension(2147483647, 30));
-        strSearchBar.setMinimumSize(new java.awt.Dimension(2, 20));
-        strSearchBar.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchField.setText("Search");
+        searchField.setAlignmentX(1.0F);
+        searchField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        searchField.setMaximumSize(new java.awt.Dimension(2147483647, 30));
+        searchField.setMinimumSize(new java.awt.Dimension(2, 20));
+        searchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                strSearchBarMouseClicked(evt);
+                searchFieldMouseClicked(evt);
             }
         });
-        strSearchBar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                strSearchBarActionPerformed(evt);
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchFieldKeyReleased(evt);
             }
         });
-        leftPanel.add(strSearchBar);
+        leftPanel.add(searchField);
         leftPanel.add(filler6);
 
         contactJList.setModel(contactModel);
@@ -257,30 +259,65 @@ public class CRMGUI extends javax.swing.JFrame {
 
         strClientName.setMaximumSize(new java.awt.Dimension(175, 14));
         strClientName.setMinimumSize(new java.awt.Dimension(175, 14));
+        strClientName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strClientNameMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strClientName);
 
         strCompany.setMaximumSize(new java.awt.Dimension(175, 14));
         strCompany.setMinimumSize(new java.awt.Dimension(175, 14));
+        strCompany.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strCompanyMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strCompany);
 
         strAddress.setMaximumSize(new java.awt.Dimension(175, 14));
         strAddress.setMinimumSize(new java.awt.Dimension(175, 14));
+        strAddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strAddressMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strAddress);
 
         strCity.setMaximumSize(new java.awt.Dimension(175, 14));
         strCity.setMinimumSize(new java.awt.Dimension(175, 14));
+        strCity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strCityMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strCity);
 
         strState.setMaximumSize(new java.awt.Dimension(175, 14));
         strState.setMinimumSize(new java.awt.Dimension(175, 14));
+        strState.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strStateMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strState);
 
         strZipCode.setMaximumSize(new java.awt.Dimension(175, 14));
         strZipCode.setMinimumSize(new java.awt.Dimension(175, 14));
+        strZipCode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strZipCodeMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strZipCode);
 
         strEmail.setMaximumSize(new java.awt.Dimension(175, 14));
         strEmail.setMinimumSize(new java.awt.Dimension(175, 14));
+        strEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                strEmailMouseClicked(evt);
+            }
+        });
         clientInfoPanel.add(strEmail);
 
         clientInfoTab.add(clientInfoPanel, java.awt.BorderLayout.CENTER);
@@ -458,6 +495,11 @@ public class CRMGUI extends javax.swing.JFrame {
         menuNewClient.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menuNewClient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/user_add.png"))); // NOI18N
         menuNewClient.setText("New Customer");
+        menuNewClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNewClientActionPerformed(evt);
+            }
+        });
         menuEdit.add(menuNewClient);
 
         menuBar.add(menuEdit);
@@ -476,16 +518,11 @@ public class CRMGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblTitlebarActionPerformed
 
-    private void strSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_strSearchBarActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_strSearchBarActionPerformed
-
-    private void strSearchBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strSearchBarMouseClicked
-        if (strSearchBar.getText().equals("Search")) {
-            strSearchBar.setText("");
+    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
+        if (searchField.getText().equals("Search")) {
+            searchField.setText("");
         }
-    }//GEN-LAST:event_strSearchBarMouseClicked
+    }//GEN-LAST:event_searchFieldMouseClicked
 
     private void newContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newContactButtonActionPerformed
         // TODO add your handling code here:
@@ -504,18 +541,144 @@ public class CRMGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_contactJListValueChanged
 
     private void clearOrderNotesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearOrderNotesButtonActionPerformed
-        // TODO add your handling code here:
+        if(currentOrder == null) return;
+        orderNotesTextArea.setText("");
+        currentOrder.setOrderNote("");
     }//GEN-LAST:event_clearOrderNotesButtonActionPerformed
 
     private void newOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newOrderButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newOrderButtonActionPerformed
+
+    private void strClientNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strClientNameMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String name = JOptionPane.showInputDialog(this, "Enter name: ","Change Name", JOptionPane.PLAIN_MESSAGE);
+            if (name != null && !name.trim().isEmpty()) {
+                currentContact.setName(name);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strClientNameMouseClicked
+
+    private void strCompanyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strCompanyMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String company = JOptionPane.showInputDialog(this, "Enter company: ","Change Company", JOptionPane.PLAIN_MESSAGE);
+            if (company != null && !company.trim().isEmpty()) {
+                currentContact.setCompany(company);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strCompanyMouseClicked
+
+    private void strAddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strAddressMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String address = JOptionPane.showInputDialog(this, "Enter address: ","Change Address", JOptionPane.PLAIN_MESSAGE);
+            if (address != null && !address.trim().isEmpty()) {
+                currentContact.setAddress(address);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strAddressMouseClicked
+
+    private void strCityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strCityMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String city = JOptionPane.showInputDialog(this, "Enter city: ","Change City", JOptionPane.PLAIN_MESSAGE);
+            if (city != null && !city.trim().isEmpty()) {
+                currentContact.setCity(city);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strCityMouseClicked
+
+    private void strStateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strStateMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String state = JOptionPane.showInputDialog(this, "Enter state: ","Change State", JOptionPane.PLAIN_MESSAGE);
+            if (state != null && !state.trim().isEmpty()) {
+                currentContact.setState(state);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strStateMouseClicked
+
+    private void strZipCodeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strZipCodeMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String zipCode = JOptionPane.showInputDialog(this, "Enter zipCode: ","Change Zipcode", JOptionPane.PLAIN_MESSAGE);
+            if (zipCode != null && !zipCode.trim().isEmpty()) {
+                currentContact.setZipCode(zipCode);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strZipCodeMouseClicked
+
+    private void strEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_strEmailMouseClicked
+        if(currentContact == null) return;
+        if(evt.getClickCount() == 2){
+            String email = JOptionPane.showInputDialog(this, "Enter email: ","Change Email", JOptionPane.PLAIN_MESSAGE);
+            if (email != null && !email.trim().isEmpty()) {
+                currentContact.setEmail(email);
+                displayCurrent();
+            }
+        }
+    }//GEN-LAST:event_strEmailMouseClicked
+
+    private void menuNewClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewClientActionPerformed
+        newContactButtonActionPerformed(evt);
+    }//GEN-LAST:event_menuNewClientActionPerformed
+
+    private void searchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyReleased
+        String searchText = searchField.getText();
+        search(searchText);
+    }//GEN-LAST:event_searchFieldKeyReleased
+    private void search(String searchText){
+        if(searchText == null || searchText.isEmpty()){
+            searchField.setText("Search");
+            searchList.clear();
+            populateContactList(contactList);
+        } else {
+            searchList.clear();
+            for(Contact c: contactList){
+                if(c.searchable.contains(searchText))
+                    searchList.add(c);
+            }
+            populateContactList(searchList);
+        }
+            
+    }
+    private void populateContactList(List<Contact> list){
+        contactModel.clear();
+        for(Contact c: list){
+            contactModel.addElement(c);
+        }
+    }
     
     public void updateCurrent(Contact c){
         currentContact = c;
         displayCurrent();
     }
     
+    public void displayTabs(){
+        if (currentContact != null) // There is a contact
+            if (clientDisplay.getTabCount() == 1) // Tabs were hidden
+                showTabs();
+            else //There is no contact
+            if (clientDisplay.getTabCount() != 1) // Tabs were shown
+                hideTabs();
+    }
+    
+    private void showTabs(){
+        clientDisplay.addTab("Order Info", new javax.swing.ImageIcon(getClass().getResource("/Resource/order.png")), orderTab);
+        clientDisplay.addTab("Notes", new javax.swing.ImageIcon(getClass().getResource("/Resource/note.png")), notesTab);
+    }
+    private void hideTabs(){
+        clientDisplay.removeTabAt(2);
+        clientDisplay.removeTabAt(1);
+    }
     public void displayCurrent(){
         if(currentContact == null) return;
         
@@ -540,6 +703,12 @@ public class CRMGUI extends javax.swing.JFrame {
         for(Order o: currentContact.getOrderList()){
             orderModel.addElement(o);
             orderList.add(o);
+        }
+        if(!orderModel.isEmpty()){
+            orderJList.setSelectedIndex(0);
+            currentOrder = (Order)orderModel.get(0);
+            orderIdDisplay.setText(" " + currentOrder.getOrderId());
+            orderAmountDisplay.setText(" " + currentOrder.getOrderAmount());
         }
             
     }
@@ -647,12 +816,12 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane phoneScrollPane;
     private javax.swing.JMenuItem printList;
     private javax.swing.JPanel rightPanel;
+    private javax.swing.JTextField searchField;
     private javax.swing.JLabel strAddress;
     private javax.swing.JLabel strCity;
     private javax.swing.JLabel strClientName;
     private javax.swing.JLabel strCompany;
     private javax.swing.JLabel strEmail;
-    private javax.swing.JTextField strSearchBar;
     private javax.swing.JLabel strState;
     private javax.swing.JLabel strZipCode;
     private javax.swing.JPanel titleBar;

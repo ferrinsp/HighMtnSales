@@ -15,7 +15,10 @@ public class Order {
 	public String getOrderNote(){
 		return this.orderNote;
 	}
-	
+	public void setOrderNote(String setOrderNote){
+            orderNote = setOrderNote;
+        }
+        
 	public Order (int numOrder, int orderAmount, String orderNote) {
 		this.orderId = numOrder;
 		this.orderAmount = orderAmount;
