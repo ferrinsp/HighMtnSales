@@ -190,6 +190,7 @@ public class ContactBuilder {
 
         nameField.setBackground(new java.awt.Color(51, 51, 51));
         nameField.setForeground(new java.awt.Color(255, 255, 255));
+        nameField.setCaretColor(new java.awt.Color(255, 255, 255));
         nameField.setMaximumSize(new java.awt.Dimension(200, 30));
         nameField.setMinimumSize(new java.awt.Dimension(200, 30));
         nameField.setName(""); // NOI18N

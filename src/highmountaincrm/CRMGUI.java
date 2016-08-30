@@ -25,8 +25,9 @@ public class CRMGUI extends javax.swing.JFrame {
     private List<Order> orderList = new ArrayList<>();
     private List<String> noteList = new ArrayList<>();
 
-    public CRMGUI() {
+    public CRMGUI() {        
         initComponents();
+        displayCurrent();
     }
 
     @SuppressWarnings("unchecked")
@@ -680,8 +681,9 @@ public class CRMGUI extends javax.swing.JFrame {
         clientDisplay.removeTabAt(1);
     }
     public void displayCurrent(){
-        if(currentContact == null) return;
-        
+        if(currentContact == null)           
+            return;
+        displayTabs();
         strClientName.setText(currentContact.getName());
         strCompany.setText(currentContact.getCompany());
         strAddress.setText(currentContact.getAddress());

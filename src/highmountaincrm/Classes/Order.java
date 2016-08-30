@@ -18,7 +18,7 @@ public class Order {
 	public void setOrderNote(String setOrderNote){
             orderNote = setOrderNote;
         }
-        
+        public Order(){}
 	public Order (int numOrder, int orderAmount, String orderNote) {
 		this.orderId = numOrder;
 		this.orderAmount = orderAmount;
