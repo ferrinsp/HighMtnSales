@@ -24,6 +24,10 @@ public class CRMGUI extends javax.swing.JFrame {
     private List<Phone> phoneList = new ArrayList<>();
     private List<Order> orderList = new ArrayList<>();
     private List<String> noteList = new ArrayList<>();
+    
+    private Font buttonFont = new Font("Calibri", Font.ITALIC, 12);
+    private Font labelFont = new Font("Calibri", 3, 14);
+    private Font tabFont = new Font("Calibri", Font.ITALIC, 12);
 
     public CRMGUI() {
         initComponents();
@@ -42,7 +46,8 @@ public class CRMGUI extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<Contact>();
+        contactJList = new javax.swing.JList<>();
+        filler17 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -57,27 +62,41 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoTab = new javax.swing.JPanel();
         clientInfoLabelPanel = new javax.swing.JPanel();
         lblClientName = new javax.swing.JLabel();
+        filler19 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         lblCompany = new javax.swing.JLabel();
+        filler18 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         lblAddress = new javax.swing.JLabel();
+        filler21 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         lblCity = new javax.swing.JLabel();
+        filler20 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         lblState = new javax.swing.JLabel();
-        lblZipCode = new javax.swing.JLabel();
+        filler22 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         lblEmail = new javax.swing.JLabel();
+        filler24 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
+        lblZipCode = new javax.swing.JLabel();
+        filler23 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         clientInfoPanel = new javax.swing.JPanel();
         strClientName = new javax.swing.JLabel();
+        filler25 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         strCompany = new javax.swing.JLabel();
+        filler26 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         strAddress = new javax.swing.JLabel();
+        filler27 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         strCity = new javax.swing.JLabel();
+        filler28 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         strState = new javax.swing.JLabel();
+        filler29 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         strZipCode = new javax.swing.JLabel();
+        filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         strEmail = new javax.swing.JLabel();
+        filler30 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<Phone>();
+        phoneJList = new javax.swing.JList<>();
         orderTab = new javax.swing.JPanel();
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<Order>();
+        orderJList = new javax.swing.JList<>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -123,7 +142,7 @@ public class CRMGUI extends javax.swing.JFrame {
         titleBar.setLayout(new javax.swing.BoxLayout(titleBar, javax.swing.BoxLayout.LINE_AXIS));
 
         lblTitlebar.setBackground(new java.awt.Color(0, 0, 102));
-        lblTitlebar.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
+        lblTitlebar.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
         lblTitlebar.setForeground(new java.awt.Color(240, 240, 240));
         lblTitlebar.setText("HIGH MOUNTAIN SALES");
         lblTitlebar.setToolTipText("");
@@ -147,6 +166,7 @@ public class CRMGUI extends javax.swing.JFrame {
         leftPanel.setLayout(new javax.swing.BoxLayout(leftPanel, javax.swing.BoxLayout.Y_AXIS));
         leftPanel.add(filler7);
 
+        searchField.setFont(new java.awt.Font("Calibri", 2, 11)); // NOI18N
         searchField.setText("Search");
         searchField.setAlignmentX(1.0F);
         searchField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -155,6 +175,14 @@ public class CRMGUI extends javax.swing.JFrame {
         searchField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchFieldMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchFieldMouseEntered(evt);
+            }
+        });
+        searchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFieldActionPerformed(evt);
             }
         });
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -179,6 +207,7 @@ public class CRMGUI extends javax.swing.JFrame {
         contactScrollPane.setViewportView(contactJList);
 
         leftPanel.add(contactScrollPane);
+        leftPanel.add(filler17);
         leftPanel.add(filler4);
 
         buttonPanel.setBackground(new java.awt.Color(51, 51, 51));
@@ -186,7 +215,7 @@ public class CRMGUI extends javax.swing.JFrame {
         buttonPanel.add(filler2);
 
         deleteButton.setBackground(new java.awt.Color(102, 0, 0));
-        deleteButton.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
+        deleteButton.setFont(buttonFont);
         deleteButton.setForeground(new java.awt.Color(102, 0, 0));
         deleteButton.setText("Remove");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +227,7 @@ public class CRMGUI extends javax.swing.JFrame {
         buttonPanel.add(filler10);
 
         newContactButton.setBackground(new java.awt.Color(0, 0, 102));
-        newContactButton.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
+        newContactButton.setFont(buttonFont);
         newContactButton.setForeground(new java.awt.Color(0, 0, 102));
         newContactButton.setText("New");
         newContactButton.setPreferredSize(new java.awt.Dimension(83, 23));
@@ -220,7 +249,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         clientDisplay.setBackground(new java.awt.Color(0, 0, 102));
         clientDisplay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        clientDisplay.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        clientDisplay.setFont(tabFont);
         clientDisplay.setMinimumSize(new java.awt.Dimension(300, 60));
         clientDisplay.setPreferredSize(new java.awt.Dimension(300, 60));
 
@@ -228,101 +257,155 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoTab.setLayout(new java.awt.BorderLayout());
 
         clientInfoLabelPanel.setBackground(new java.awt.Color(204, 204, 255));
+        clientInfoLabelPanel.setMaximumSize(new java.awt.Dimension(81, 245));
+        clientInfoLabelPanel.setMinimumSize(new java.awt.Dimension(81, 245));
+        clientInfoLabelPanel.setPreferredSize(new java.awt.Dimension(81, 245));
         clientInfoLabelPanel.setLayout(new javax.swing.BoxLayout(clientInfoLabelPanel, javax.swing.BoxLayout.Y_AXIS));
 
+        lblClientName.setFont(labelFont);
         lblClientName.setText("Client Name:");
+        lblClientName.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblClientName.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblClientName.setPreferredSize(new java.awt.Dimension(81, 25));
         clientInfoLabelPanel.add(lblClientName);
+        clientInfoLabelPanel.add(filler19);
 
+        lblCompany.setFont(labelFont);
         lblCompany.setText("Company:");
+        lblCompany.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblCompany.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblCompany.setPreferredSize(new java.awt.Dimension(81, 25));
         clientInfoLabelPanel.add(lblCompany);
+        clientInfoLabelPanel.add(filler18);
 
+        lblAddress.setFont(labelFont);
         lblAddress.setText("Address:");
+        lblAddress.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblAddress.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblAddress.setPreferredSize(new java.awt.Dimension(81, 25));
         clientInfoLabelPanel.add(lblAddress);
+        clientInfoLabelPanel.add(filler21);
 
+        lblCity.setFont(labelFont);
         lblCity.setText("City:");
+        lblCity.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblCity.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblCity.setPreferredSize(new java.awt.Dimension(81, 25));
         clientInfoLabelPanel.add(lblCity);
+        clientInfoLabelPanel.add(filler20);
 
+        lblState.setFont(labelFont);
         lblState.setText("State:");
+        lblState.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblState.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblState.setPreferredSize(new java.awt.Dimension(81, 25));
         clientInfoLabelPanel.add(lblState);
+        clientInfoLabelPanel.add(filler22);
 
-        lblZipCode.setText("Zip Code:");
-        clientInfoLabelPanel.add(lblZipCode);
-
+        lblEmail.setFont(labelFont);
         lblEmail.setText("Email:");
+        lblEmail.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblEmail.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblEmail.setPreferredSize(new java.awt.Dimension(81, 25));
         clientInfoLabelPanel.add(lblEmail);
+        clientInfoLabelPanel.add(filler24);
+
+        lblZipCode.setFont(labelFont);
+        lblZipCode.setText("Zip Code:");
+        lblZipCode.setMaximumSize(new java.awt.Dimension(81, 25));
+        lblZipCode.setMinimumSize(new java.awt.Dimension(81, 25));
+        lblZipCode.setPreferredSize(new java.awt.Dimension(81, 25));
+        clientInfoLabelPanel.add(lblZipCode);
+        clientInfoLabelPanel.add(filler23);
 
         clientInfoTab.add(clientInfoLabelPanel, java.awt.BorderLayout.WEST);
 
-        clientInfoPanel.setMaximumSize(new java.awt.Dimension(100, 56));
-        clientInfoPanel.setMinimumSize(new java.awt.Dimension(100, 56));
+        clientInfoPanel.setMaximumSize(new java.awt.Dimension(5, 245));
+        clientInfoPanel.setMinimumSize(new java.awt.Dimension(5, 245));
+        clientInfoPanel.setPreferredSize(new java.awt.Dimension(5, 245));
         clientInfoPanel.setLayout(new javax.swing.BoxLayout(clientInfoPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        strClientName.setMaximumSize(new java.awt.Dimension(175, 14));
-        strClientName.setMinimumSize(new java.awt.Dimension(175, 14));
+        strClientName.setMaximumSize(new java.awt.Dimension(205, 25));
+        strClientName.setMinimumSize(new java.awt.Dimension(205, 25));
+        strClientName.setPreferredSize(new java.awt.Dimension(205, 25));
         strClientName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strClientNameMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strClientName);
+        clientInfoPanel.add(filler25);
 
-        strCompany.setMaximumSize(new java.awt.Dimension(175, 14));
-        strCompany.setMinimumSize(new java.awt.Dimension(175, 14));
+        strCompany.setMaximumSize(new java.awt.Dimension(205, 25));
+        strCompany.setMinimumSize(new java.awt.Dimension(205, 25));
+        strCompany.setPreferredSize(new java.awt.Dimension(205, 25));
         strCompany.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strCompanyMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strCompany);
+        clientInfoPanel.add(filler26);
 
-        strAddress.setMaximumSize(new java.awt.Dimension(175, 14));
-        strAddress.setMinimumSize(new java.awt.Dimension(175, 14));
+        strAddress.setMaximumSize(new java.awt.Dimension(205, 25));
+        strAddress.setMinimumSize(new java.awt.Dimension(205, 25));
+        strAddress.setPreferredSize(new java.awt.Dimension(205, 25));
+        strAddress.setRequestFocusEnabled(false);
         strAddress.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strAddressMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strAddress);
+        clientInfoPanel.add(filler27);
 
-        strCity.setMaximumSize(new java.awt.Dimension(175, 14));
-        strCity.setMinimumSize(new java.awt.Dimension(175, 14));
+        strCity.setMaximumSize(new java.awt.Dimension(205, 25));
+        strCity.setMinimumSize(new java.awt.Dimension(205, 25));
+        strCity.setPreferredSize(new java.awt.Dimension(205, 25));
         strCity.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strCityMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strCity);
+        clientInfoPanel.add(filler28);
 
-        strState.setMaximumSize(new java.awt.Dimension(175, 14));
-        strState.setMinimumSize(new java.awt.Dimension(175, 14));
+        strState.setMaximumSize(new java.awt.Dimension(205, 25));
+        strState.setMinimumSize(new java.awt.Dimension(205, 25));
+        strState.setPreferredSize(new java.awt.Dimension(205, 25));
         strState.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strStateMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strState);
+        clientInfoPanel.add(filler29);
 
-        strZipCode.setMaximumSize(new java.awt.Dimension(175, 14));
-        strZipCode.setMinimumSize(new java.awt.Dimension(175, 14));
+        strZipCode.setMaximumSize(new java.awt.Dimension(205, 25));
+        strZipCode.setMinimumSize(new java.awt.Dimension(205, 25));
+        strZipCode.setPreferredSize(new java.awt.Dimension(205, 25));
         strZipCode.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strZipCodeMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strZipCode);
+        clientInfoPanel.add(filler31);
 
-        strEmail.setMaximumSize(new java.awt.Dimension(175, 14));
-        strEmail.setMinimumSize(new java.awt.Dimension(175, 14));
+        strEmail.setMaximumSize(new java.awt.Dimension(205, 25));
+        strEmail.setMinimumSize(new java.awt.Dimension(205, 25));
+        strEmail.setPreferredSize(new java.awt.Dimension(205, 25));
         strEmail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 strEmailMouseClicked(evt);
             }
         });
         clientInfoPanel.add(strEmail);
+        clientInfoPanel.add(filler30);
 
         clientInfoTab.add(clientInfoPanel, java.awt.BorderLayout.CENTER);
 
-        phoneListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Phone List:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        phoneListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Phone List:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 2, 12))); // NOI18N
         phoneListPanel.setLayout(new javax.swing.BoxLayout(phoneListPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         phoneJList.setModel(phoneModel);
@@ -341,7 +424,7 @@ public class CRMGUI extends javax.swing.JFrame {
         orderTab.setPreferredSize(new java.awt.Dimension(240, 360));
         orderTab.setLayout(new javax.swing.BoxLayout(orderTab, javax.swing.BoxLayout.Y_AXIS));
 
-        orderInfoDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "List of Orders"));
+        orderInfoDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "List of Orders", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 12))); // NOI18N
         orderInfoDetailPanel.setAutoscrolls(true);
         orderInfoDetailPanel.setMinimumSize(new java.awt.Dimension(283, 40));
         orderInfoDetailPanel.setName(""); // NOI18N
@@ -363,6 +446,9 @@ public class CRMGUI extends javax.swing.JFrame {
         orderButtonPanel.setLayout(new javax.swing.BoxLayout(orderButtonPanel, javax.swing.BoxLayout.LINE_AXIS));
         orderButtonPanel.add(filler1);
 
+        newOrderButton.setBackground(new java.awt.Color(255, 255, 255));
+        newOrderButton.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        newOrderButton.setForeground(new java.awt.Color(0, 0, 102));
         newOrderButton.setText("New");
         newOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,10 +458,16 @@ public class CRMGUI extends javax.swing.JFrame {
         orderButtonPanel.add(newOrderButton);
         orderButtonPanel.add(filler8);
 
+        editOrderButton.setBackground(new java.awt.Color(255, 255, 255));
+        editOrderButton.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        editOrderButton.setForeground(new java.awt.Color(0, 0, 102));
         editOrderButton.setText("Edit");
         orderButtonPanel.add(editOrderButton);
         orderButtonPanel.add(filler11);
 
+        clearOrderButton.setBackground(new java.awt.Color(255, 255, 255));
+        clearOrderButton.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        clearOrderButton.setForeground(new java.awt.Color(0, 0, 102));
         clearOrderButton.setText("Remove");
         orderButtonPanel.add(clearOrderButton);
         orderButtonPanel.add(filler15);
@@ -384,11 +476,13 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderTab.add(orderInfoDetailPanel);
 
-        orderNotesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Order Notes"));
+        orderNotesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Order Notes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 12))); // NOI18N
+        orderNotesPanel.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         orderNotesPanel.setLayout(new javax.swing.BoxLayout(orderNotesPanel, javax.swing.BoxLayout.Y_AXIS));
 
         orderInfoPanel.setLayout(new javax.swing.BoxLayout(orderInfoPanel, javax.swing.BoxLayout.LINE_AXIS));
 
+        orderIdLabel.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
         orderIdLabel.setText("Order Number:");
         orderInfoPanel.add(orderIdLabel);
 
@@ -397,6 +491,7 @@ public class CRMGUI extends javax.swing.JFrame {
         orderIdDisplay.setPreferredSize(new java.awt.Dimension(72, 14));
         orderInfoPanel.add(orderIdDisplay);
 
+        orderAmountLabel.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
         orderAmountLabel.setText("Order Amount:");
         orderInfoPanel.add(orderAmountLabel);
         orderInfoPanel.add(orderAmountDisplay);
@@ -405,6 +500,7 @@ public class CRMGUI extends javax.swing.JFrame {
         orderNotesPanel.add(orderInfoPanel);
 
         orderNotesTextArea.setColumns(20);
+        orderNotesTextArea.setFont(new java.awt.Font("Calibri", 3, 12)); // NOI18N
         orderNotesTextArea.setRows(5);
         jScrollPane1.setViewportView(orderNotesTextArea);
 
@@ -412,6 +508,9 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderNotesButtonPanel.setLayout(new javax.swing.BoxLayout(orderNotesButtonPanel, javax.swing.BoxLayout.LINE_AXIS));
 
+        clearOrderNotesButton.setBackground(new java.awt.Color(255, 255, 255));
+        clearOrderNotesButton.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        clearOrderNotesButton.setForeground(new java.awt.Color(0, 0, 102));
         clearOrderNotesButton.setText("Clear");
         clearOrderNotesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,6 +544,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         noteButtonPanel.setLayout(new javax.swing.BoxLayout(noteButtonPanel, javax.swing.BoxLayout.LINE_AXIS));
 
+        clearNoteButton.setFont(buttonFont);
         clearNoteButton.setText("Clear");
         noteButtonPanel.add(clearNoteButton);
 
@@ -635,6 +735,14 @@ public class CRMGUI extends javax.swing.JFrame {
         String searchText = searchField.getText();
         search(searchText);
     }//GEN-LAST:event_searchFieldKeyReleased
+
+    private void searchFieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseEntered
+        searchField.setText("");
+    }//GEN-LAST:event_searchFieldMouseEntered
+
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchFieldActionPerformed
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
             searchField.setText("Search");
@@ -647,8 +755,7 @@ public class CRMGUI extends javax.swing.JFrame {
                     searchList.add(c);
             }
             populateContactList(searchList);
-        }
-            
+        }       
     }
     private void populateContactList(List<Contact> list){
         contactModel.clear();
@@ -768,8 +875,23 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler14;
     private javax.swing.Box.Filler filler15;
     private javax.swing.Box.Filler filler16;
+    private javax.swing.Box.Filler filler17;
+    private javax.swing.Box.Filler filler18;
+    private javax.swing.Box.Filler filler19;
     private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler20;
+    private javax.swing.Box.Filler filler21;
+    private javax.swing.Box.Filler filler22;
+    private javax.swing.Box.Filler filler23;
+    private javax.swing.Box.Filler filler24;
+    private javax.swing.Box.Filler filler25;
+    private javax.swing.Box.Filler filler26;
+    private javax.swing.Box.Filler filler27;
+    private javax.swing.Box.Filler filler28;
+    private javax.swing.Box.Filler filler29;
     private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler30;
+    private javax.swing.Box.Filler filler31;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;

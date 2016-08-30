@@ -2,6 +2,7 @@ package highmountaincrm;
 
 import javax.swing.JFrame;
 import highmountaincrm.Classes.*;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -13,6 +14,11 @@ public class ContactBuilder {
     public JFrame parent;
     public JDialog dialog;
     public Contact information;
+    
+    private Font buttonFont = new Font("Calibri", Font.ITALIC, 12);
+    private Font labelFont = new Font("Calibri", 3, 14);
+    private Font tabFont = new Font("Calibri", Font.ITALIC, 12);
+    
     public ContactBuilder(JFrame c){
         parent = c;
     }
@@ -97,12 +103,12 @@ public class ContactBuilder {
         filler21 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         phoneLabel = new javax.swing.JLabel();
         phoneField = new javax.swing.JTextField();
-        phoneComboBox = new javax.swing.JComboBox<String>();
+        phoneComboBox = new javax.swing.JComboBox<>();
         addPhone = new javax.swing.JButton();
         filler22 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler25 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<Phone>();
+        jList1 = new javax.swing.JList<>();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         eastPanel = new javax.swing.JPanel();
@@ -125,11 +131,11 @@ public class ContactBuilder {
 
         northTitlePanel.setBackground(new java.awt.Color(0, 0, 102));
         northTitlePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        northTitlePanel.setMaximumSize(new java.awt.Dimension(900, 35));
-        northTitlePanel.setMinimumSize(new java.awt.Dimension(900, 35));
-        northTitlePanel.setPreferredSize(new java.awt.Dimension(900, 35));
+        northTitlePanel.setMaximumSize(new java.awt.Dimension(1100, 40));
+        northTitlePanel.setMinimumSize(new java.awt.Dimension(1100, 40));
+        northTitlePanel.setPreferredSize(new java.awt.Dimension(1100, 40));
 
-        highMtnLabel.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        highMtnLabel.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
         highMtnLabel.setForeground(new java.awt.Color(255, 255, 255));
         highMtnLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         highMtnLabel.setText("HIGH MOUNTAIN SALES");
@@ -146,13 +152,11 @@ public class ContactBuilder {
         northTitlePanel.setLayout(northTitlePanelLayout);
         northTitlePanelLayout.setHorizontalGroup(
             northTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(northTitlePanelLayout.createSequentialGroup()
-                .addComponent(highMtnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 179, Short.MAX_VALUE))
+            .addComponent(highMtnLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
         );
         northTitlePanelLayout.setVerticalGroup(
             northTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(highMtnLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addComponent(highMtnLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
         add(northTitlePanel);
@@ -170,7 +174,7 @@ public class ContactBuilder {
         northPanel.add(filler5);
 
         westPanel.setBackground(new java.awt.Color(51, 51, 51));
-        westPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Information", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        westPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contact Information", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Calibri", 2, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         westPanel.setToolTipText("Information needed to create a new contact");
         westPanel.setMinimumSize(new java.awt.Dimension(369, 420));
         westPanel.setPreferredSize(new java.awt.Dimension(369, 420));
@@ -181,7 +185,7 @@ public class ContactBuilder {
         namePanel.setLayout(new javax.swing.BoxLayout(namePanel, javax.swing.BoxLayout.LINE_AXIS));
         namePanel.add(filler14);
 
-        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nameLabel.setFont(labelFont);
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel.setText("Name:");
         nameLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -190,6 +194,7 @@ public class ContactBuilder {
 
         nameField.setBackground(new java.awt.Color(51, 51, 51));
         nameField.setForeground(new java.awt.Color(255, 255, 255));
+        nameField.setCaretColor(new java.awt.Color(255, 255, 255));
         nameField.setMaximumSize(new java.awt.Dimension(200, 30));
         nameField.setMinimumSize(new java.awt.Dimension(200, 30));
         nameField.setName(""); // NOI18N
@@ -205,7 +210,7 @@ public class ContactBuilder {
         companyPanel.setLayout(new javax.swing.BoxLayout(companyPanel, javax.swing.BoxLayout.LINE_AXIS));
         companyPanel.add(filler16);
 
-        companyLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        companyLabel.setFont(labelFont);
         companyLabel.setForeground(new java.awt.Color(255, 255, 255));
         companyLabel.setText("Company:");
         companyLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -232,7 +237,7 @@ public class ContactBuilder {
         emailPanel.setLayout(new javax.swing.BoxLayout(emailPanel, javax.swing.BoxLayout.LINE_AXIS));
         emailPanel.add(filler17);
 
-        emailLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailLabel.setFont(labelFont);
         emailLabel.setForeground(new java.awt.Color(255, 255, 255));
         emailLabel.setText("Email:");
         emailLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -257,7 +262,7 @@ public class ContactBuilder {
         addressPanel.setLayout(new javax.swing.BoxLayout(addressPanel, javax.swing.BoxLayout.LINE_AXIS));
         addressPanel.add(filler26);
 
-        addressLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addressLabel.setFont(labelFont);
         addressLabel.setForeground(new java.awt.Color(255, 255, 255));
         addressLabel.setText("Address:");
         addressLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -282,7 +287,7 @@ public class ContactBuilder {
         cityPanel.setLayout(new javax.swing.BoxLayout(cityPanel, javax.swing.BoxLayout.LINE_AXIS));
         cityPanel.add(filler32);
 
-        cityLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cityLabel.setFont(labelFont);
         cityLabel.setForeground(new java.awt.Color(255, 255, 255));
         cityLabel.setText("City:");
         cityLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -307,7 +312,7 @@ public class ContactBuilder {
         statePanel.setLayout(new javax.swing.BoxLayout(statePanel, javax.swing.BoxLayout.LINE_AXIS));
         statePanel.add(filler29);
 
-        stateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stateLabel.setFont(labelFont);
         stateLabel.setForeground(new java.awt.Color(255, 255, 255));
         stateLabel.setText("State:");
         stateLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -332,7 +337,7 @@ public class ContactBuilder {
         zipPanel.setLayout(new javax.swing.BoxLayout(zipPanel, javax.swing.BoxLayout.LINE_AXIS));
         zipPanel.add(filler19);
 
-        zipLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        zipLabel.setFont(labelFont);
         zipLabel.setForeground(new java.awt.Color(255, 255, 255));
         zipLabel.setText("Zip Code:");
         zipLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -364,7 +369,7 @@ public class ContactBuilder {
         phoneNorthPanel.setLayout(new javax.swing.BoxLayout(phoneNorthPanel, javax.swing.BoxLayout.LINE_AXIS));
         phoneNorthPanel.add(filler21);
 
-        phoneLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        phoneLabel.setFont(labelFont);
         phoneLabel.setForeground(new java.awt.Color(255, 255, 255));
         phoneLabel.setText("Phone:");
         phoneLabel.setMaximumSize(new java.awt.Dimension(80, 28));
@@ -386,7 +391,8 @@ public class ContactBuilder {
         });
         phoneNorthPanel.add(phoneField);
 
-        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
+        phoneComboBox.setFont(labelFont);
+        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
         phoneComboBox.setNextFocusableComponent(addPhone);
         phoneNorthPanel.add(phoneComboBox);
 
@@ -456,7 +462,7 @@ public class ContactBuilder {
             .addGroup(southInnerPanelLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(highMtnImage)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         eastPanel.add(southInnerPanel);
@@ -477,6 +483,7 @@ public class ContactBuilder {
         southPanel.add(filler1);
 
         saveButton.setBackground(new java.awt.Color(0, 0, 102));
+        saveButton.setFont(buttonFont);
         saveButton.setForeground(new java.awt.Color(0, 0, 102));
         saveButton.setText("Save");
         saveButton.setToolTipText("Click to save contact information");
@@ -489,6 +496,7 @@ public class ContactBuilder {
         southPanel.add(filler2);
 
         cancelButton.setBackground(new java.awt.Color(102, 0, 0));
+        cancelButton.setFont(buttonFont);
         cancelButton.setForeground(new java.awt.Color(102, 0, 0));
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
