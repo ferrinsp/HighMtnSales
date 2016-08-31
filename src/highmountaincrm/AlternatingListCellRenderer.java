@@ -7,6 +7,7 @@ package highmountaincrm;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -24,6 +25,7 @@ public class AlternatingListCellRenderer extends JLabel implements ListCellRende
    }
    public AlternatingListCellRenderer(Color even, Color odd, Color selected){
       setOpaque(true);
+      this.setFont(new Font("Courier Prime",0,24));
       this.even = even;
       this.odd = odd;
       this.selected = selected;

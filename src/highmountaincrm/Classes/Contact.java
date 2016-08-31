@@ -91,15 +91,19 @@ public class Contact {
         }
         @Override
         public String toString(){
-            return name + "      " + company;
+            String display = name;
+            while(display.length() < columnLength + 6){
+                display += " ";
+            }
+            display += company;            System.out.println(display);//(name + " length: " + columnLength);
+
+            return display;
         }
         public void updateSearch() {
             searchable = name + company + email + city + zipCode;
         }
-        public static void updateLength(int contactLength) {
-            if(contactLength + 6 > columnLength) {
-                columnLength = contactLength + 6;
-            }
+        public static void updateLength(int setColumnLength) {
+            columnLength = setColumnLength;
         }
 }
 
