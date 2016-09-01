@@ -49,7 +49,7 @@ public class CRMGUI extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<Contact>();
+        contactJList = new javax.swing.JList<>();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -94,7 +94,7 @@ public class CRMGUI extends javax.swing.JFrame {
         filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<Phone>();
+        phoneJList = new javax.swing.JList<>();
         orderTab = new javax.swing.JPanel();
         newOrderPanel = new javax.swing.JPanel();
         filler36 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -113,7 +113,7 @@ public class CRMGUI extends javax.swing.JFrame {
         filler34 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<Order>();
+        orderJList = new javax.swing.JList<>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -185,6 +185,7 @@ public class CRMGUI extends javax.swing.JFrame {
         leftPanel.setLayout(new javax.swing.BoxLayout(leftPanel, javax.swing.BoxLayout.Y_AXIS));
         leftPanel.add(filler7);
 
+        searchField.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
         searchField.setText("Search");
         searchField.setAlignmentX(1.0F);
         searchField.setBorder(javax.swing.BorderFactory.createEtchedBorder());

@@ -95,41 +95,21 @@ public class Contact {
             while(display.length() < columnLength + 6){
                 display += " ";
             }
-            display += company;            System.out.println(display);//(name + " length: " + columnLength);
-
+            display += company;            
+            System.out.println(display);//(name + " length: " + columnLength);
             return display;
         }
+        
+        /*public String toXMLString() {
+            return "Contact [Name = " + name + ", Company = " + company + ", Address = "
+                + address + ", City = " + city + ", State = " + state + ", ZipCode = " 
+                + zipCode + ", Email = " + email + ", Phone = " + phoneList + "]";
+        }*/
+        
         public void updateSearch() {
             searchable = name + company + email + city + zipCode;
         }
         public static void updateLength(int setColumnLength) {
             columnLength = setColumnLength;
-        }
+        }        
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
