@@ -669,8 +669,13 @@ public class CRMGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        ContactBuilder contact = new ContactBuilder(this);
+        Contact temp = contact.getContact();
+        if(temp == null) return;
+        contactList.remove(temp);
         updateMargin();
+        contactModel.removeElement(temp);
+        JOptionPane.showMessageDialog(null, 1 + "Record has been deleted.");
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void lblTitlebarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTitlebarActionPerformed
@@ -686,6 +691,7 @@ public class CRMGUI extends javax.swing.JFrame {
         contactList.add(temp);
         updateMargin();
         contactModel.addElement(temp);
+        JOptionPane.showMessageDialog(null, "Record has been added.");
     }//GEN-LAST:event_newContactButtonActionPerformed
 
     public void updateMargin(){

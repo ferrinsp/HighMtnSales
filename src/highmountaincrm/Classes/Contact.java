@@ -99,17 +99,39 @@ public class Contact {
             System.out.println(display);//(name + " length: " + columnLength);
             return display;
         }
-        
-        /*public String toXMLString() {
-            return "Contact [Name = " + name + ", Company = " + company + ", Address = "
-                + address + ", City = " + city + ", State = " + state + ", ZipCode = " 
-                + zipCode + ", Email = " + email + ", Phone = " + phoneList + "]";
-        }*/
-        
         public void updateSearch() {
             searchable = name + company + email + city + zipCode;
         }
         public static void updateLength(int setColumnLength) {
             columnLength = setColumnLength;
+        }
+        public String printableView() {
+            StringBuilder builder = new StringBuilder();
+            builder.append("<html><header><h1>");
+            builder.append("Customer Name: ");
+            builder.append(name);
+            builder.append("</h1></header>");
+            builder.append("<body>");
+            builder.append("Company: ");
+            builder.append(company);
+            builder.append("<br>Address: ");
+            builder.append(address);
+            builder.append("<br>City: ");
+            builder.append(city);
+            builder.append("<br>State: ");
+            builder.append(state);
+            builder.append("<br>ZipCode: ");
+            builder.append(zipCode);
+            builder.append("<br>Email: ");
+            builder.append(email);
+            builder.append("<br>Notes: ");
+            builder.append(notes);
+            builder.append("<br>Phone: ");
+            builder.append(phoneList);
+            builder.append("<br>Order Information: ");
+            builder.append(orderList);
+            builder.append("</body>");
+            builder.append("</html>");
+            return builder.toString();
         }        
 }
