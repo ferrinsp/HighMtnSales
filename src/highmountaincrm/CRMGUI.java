@@ -49,12 +49,14 @@ public class CRMGUI extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<>();
+        contactJList = new javax.swing.JList<Contact>();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         deleteButton = new javax.swing.JButton();
         filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        editContactButton = new javax.swing.JButton();
+        filler38 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
         newContactButton = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
@@ -94,7 +96,7 @@ public class CRMGUI extends javax.swing.JFrame {
         filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<>();
+        phoneJList = new javax.swing.JList<Phone>();
         orderTab = new javax.swing.JPanel();
         newOrderPanel = new javax.swing.JPanel();
         filler36 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -113,7 +115,7 @@ public class CRMGUI extends javax.swing.JFrame {
         filler34 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<>();
+        orderJList = new javax.swing.JList<Order>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -239,6 +241,20 @@ public class CRMGUI extends javax.swing.JFrame {
         });
         buttonPanel.add(deleteButton);
         buttonPanel.add(filler10);
+
+        editContactButton.setBackground(new java.awt.Color(0, 153, 0));
+        editContactButton.setFont(buttonFont);
+        editContactButton.setForeground(new java.awt.Color(0, 153, 0));
+        editContactButton.setText("Edit");
+        editContactButton.setToolTipText("");
+        editContactButton.setPreferredSize(new java.awt.Dimension(83, 23));
+        editContactButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editContactButtonActionPerformed(evt);
+            }
+        });
+        buttonPanel.add(editContactButton);
+        buttonPanel.add(filler38);
 
         newContactButton.setBackground(new java.awt.Color(0, 0, 102));
         newContactButton.setFont(buttonFont);
@@ -818,6 +834,18 @@ public class CRMGUI extends javax.swing.JFrame {
             searchField.setText("Search");
         }
     }//GEN-LAST:event_searchFieldFocusLost
+
+    private void editContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editContactButtonActionPerformed
+        if(currentContact == null)
+            JOptionPane.showMessageDialog(null, "No contact selected", "Error!", JOptionPane.ERROR_MESSAGE);
+        ContactBuilder contactBuilder = new ContactBuilder(this);
+        contactBuilder.createContactBuilder(currentContact);
+        Contact temp = contactBuilder.getContact();
+        if(temp == null) return;
+        currentContact = temp;
+        updateMargin();
+        JOptionPane.showMessageDialog(null, "Record has been changed.");
+    }//GEN-LAST:event_editContactButtonActionPerformed
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
             searchField.setText("Search");
@@ -863,7 +891,6 @@ public class CRMGUI extends javax.swing.JFrame {
         clientDisplay.removeTabAt(1);
     }
     public void displayCurrent(){
-        if(currentContact == null) System.out.println("Here's your problem!");
         displayTabs();
         if(currentContact == null) {
             clearDisplay();
@@ -967,6 +994,7 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JList<Contact> contactJList;
     private javax.swing.JScrollPane contactScrollPane;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editContactButton;
     private javax.swing.JButton editOrderButton;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler10;
@@ -998,6 +1026,7 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler34;
     private javax.swing.Box.Filler filler35;
     private javax.swing.Box.Filler filler36;
+    private javax.swing.Box.Filler filler38;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;

@@ -27,8 +27,24 @@ public class ContactBuilder {
     }
     public void createContactBuilder(Contact contact){
         this.parent = parent;
+        ContactPanel panel = new ContactPanel();
+        if(contact != null){
+            panel.nameField.setText(contact.getName());
+            panel.companyField.setText(contact.getCompany());
+            panel.emailField.setText(contact.getEmail());
+            panel.addressField.setText(contact.getAddress());
+            panel.cityField.setText(contact.getCity());
+            panel.stateField.setText(contact.getState());
+            panel.zipField.setText(contact.getZipCode());
+            for(Phone phone : contact.getPhoneList()){
+                panel.phoneModel.addElement(phone);
+                panel.phoneList.add(phone);
+            }
+                
+                
+        }
         dialog = new JDialog(parent, "New Contact", true);
-        dialog.setContentPane(new ContactPanel());
+        dialog.setContentPane(panel);
         dialog.setResizable(false);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.pack();
@@ -518,7 +534,7 @@ public class ContactBuilder {
         phoneList.add(phone);
         phoneField.setText("");
     }//GEN-LAST:event_addPhoneActionPerformed
-
+    
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         //if fields are empty or wrong do other stuff
         String name = nameField.getText();
