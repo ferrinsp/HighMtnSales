@@ -5,18 +5,55 @@
  */
 package highmountaincrm;
 
+import highmountaincrm.Classes.Order;
+import java.awt.Font;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Samson
  */
-public class OrderPanel extends javax.swing.JPanel {
+public class OrderPanel{
+    public Order information;
+    public JFrame parent;
+    public JDialog dialog;
+    private Font labelFont = new Font("Calibri", 3, 14);
 
+    public OrderPanel(JFrame p){
+        parent = p;
+    }
+    
+    public Order getOrder(){
+        return information;
+    }
+    
+    public void createOrderBuilder(Order o){
+        OrderBuilder panel = new OrderBuilder();
+        if(o != null){
+            panel.newOrderIdField.setText(Integer.toString(o.getOrderId()));
+            panel.newOrderIdField1.setText(Integer.toString(o.getOrderAmount()));
+            dialog = new JDialog(parent, "Edit Order", true);
+        } else{
+            dialog = new JDialog(parent, "New Order", true);
+        }
+        
+        dialog.setContentPane(panel);
+        dialog.setResizable(false);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.pack();
+        dialog.setLocationRelativeTo(parent);
+        dialog.setVisible(true);
+    }
+    
+    public class OrderBuilder extends javax.swing.JPanel {
+        
     /**
      * Creates new form OrderPanel
      */
-    public OrderPanel() {
-        initComponents();
-    }
+        public OrderBuilder() {
+            initComponents();
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,4 +161,5 @@ public class OrderPanel extends javax.swing.JPanel {
     private javax.swing.JLabel orderAmountLabel1;
     private javax.swing.JLabel orderIdLabel1;
     // End of variables declaration//GEN-END:variables
+}
 }

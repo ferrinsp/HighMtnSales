@@ -89,6 +89,9 @@ public class Contact {
         public void setOrderList(List<Order> orderList) {
             this.orderList = orderList;
         }
+        public void addOrder(Order o){
+            orderList.add(o);
+        }
         @Override
         public String toString(){
             String display = name;

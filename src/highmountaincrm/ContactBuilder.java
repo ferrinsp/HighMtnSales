@@ -40,10 +40,10 @@ public class ContactBuilder {
                 panel.phoneModel.addElement(phone);
                 panel.phoneList.add(phone);
             }
-                
-                
+            dialog = new JDialog(parent, "Edit Contact", true);
+        } else{
+            dialog = new JDialog(parent, "New Contact", true);
         }
-        dialog = new JDialog(parent, "New Contact", true);
         dialog.setContentPane(panel);
         dialog.setResizable(false);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
