@@ -9,6 +9,7 @@ import highmountaincrm.Classes.Order;
 import java.awt.Font;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,10 +32,10 @@ public class OrderPanel{
     public void createOrderBuilder(Order o){
         OrderBuilder panel = new OrderBuilder();
         if(o != null){
-            panel.newOrderIdField.setText(Integer.toString(o.getOrderId()));
-            panel.newOrderIdField1.setText(Integer.toString(o.getOrderAmount()));
+            panel.newOrderIdField.setText(o.getOrderId());
+            panel.newOrderAmountField.setText(o.getOrderAmount());
             dialog = new JDialog(parent, "Edit Order", true);
-        } else{
+        } else {
             dialog = new JDialog(parent, "New Order", true);
         }
         
@@ -74,7 +75,7 @@ public class OrderPanel{
         newOrderSouthPanel = new javax.swing.JPanel();
         orderAmountLabel1 = new javax.swing.JLabel();
         filler32 = new javax.swing.Box.Filler(new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 0), new java.awt.Dimension(8, 32767));
-        newOrderIdField1 = new javax.swing.JTextField();
+        newOrderAmountField = new javax.swing.JTextField();
         filler33 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5), new java.awt.Dimension(5, 5));
         filler35 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         addOrderButton = new javax.swing.JButton();
@@ -85,6 +86,7 @@ public class OrderPanel{
 
         newOrderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "New Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 12))); // NOI18N
         newOrderPanel.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
+        newOrderPanel.setPreferredSize(new java.awt.Dimension(219, 69));
         newOrderPanel.setLayout(new javax.swing.BoxLayout(newOrderPanel, javax.swing.BoxLayout.LINE_AXIS));
         newOrderPanel.add(filler36);
 
@@ -99,6 +101,7 @@ public class OrderPanel{
         newOrderNorthPanel.add(filler30);
 
         newOrderIdField.setMaximumSize(new java.awt.Dimension(72, 20));
+        newOrderIdField.setNextFocusableComponent(newOrderAmountField);
         newOrderIdField.setPreferredSize(new java.awt.Dimension(72, 20));
         newOrderNorthPanel.add(newOrderIdField);
 
@@ -111,11 +114,17 @@ public class OrderPanel{
         newOrderSouthPanel.add(orderAmountLabel1);
         newOrderSouthPanel.add(filler32);
 
-        newOrderIdField1.setMaximumSize(new java.awt.Dimension(72, 20));
-        newOrderIdField1.setMinimumSize(new java.awt.Dimension(72, 20));
-        newOrderIdField1.setName(""); // NOI18N
-        newOrderIdField1.setPreferredSize(new java.awt.Dimension(72, 20));
-        newOrderSouthPanel.add(newOrderIdField1);
+        newOrderAmountField.setMaximumSize(new java.awt.Dimension(72, 20));
+        newOrderAmountField.setMinimumSize(new java.awt.Dimension(72, 20));
+        newOrderAmountField.setName(""); // NOI18N
+        newOrderAmountField.setNextFocusableComponent(addOrderButton);
+        newOrderAmountField.setPreferredSize(new java.awt.Dimension(72, 20));
+        newOrderAmountField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newOrderAmountFieldActionPerformed(evt);
+            }
+        });
+        newOrderSouthPanel.add(newOrderAmountField);
 
         newOrderInputPanel.add(newOrderSouthPanel, java.awt.BorderLayout.SOUTH);
         newOrderInputPanel.add(filler33, java.awt.BorderLayout.CENTER);
@@ -123,7 +132,8 @@ public class OrderPanel{
         newOrderPanel.add(newOrderInputPanel);
         newOrderPanel.add(filler35);
 
-        addOrderButton.setText("+");
+        addOrderButton.setText("add");
+        addOrderButton.setMargin(new java.awt.Insets(2, 8, 2, 8));
         addOrderButton.setMaximumSize(new java.awt.Dimension(45, 45));
         addOrderButton.setMinimumSize(new java.awt.Dimension(45, 45));
         addOrderButton.setPreferredSize(new java.awt.Dimension(45, 45));
@@ -140,8 +150,18 @@ public class OrderPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void addOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrderButtonActionPerformed
-        // TODO add your handling code here:
+        if(newOrderIdField.getText().isEmpty() || newOrderIdField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Both fields must have information","Input Error", JOptionPane.ERROR_MESSAGE);
+        } else{
+            information = new Order(newOrderIdField.getText(),newOrderAmountField.getText());
+            dialog.dispose();
+        }
+        
     }//GEN-LAST:event_addOrderButtonActionPerformed
+
+    private void newOrderAmountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newOrderAmountFieldActionPerformed
+        addOrderButtonActionPerformed(evt);
+    }//GEN-LAST:event_newOrderAmountFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -152,8 +172,8 @@ public class OrderPanel{
     private javax.swing.Box.Filler filler34;
     private javax.swing.Box.Filler filler35;
     private javax.swing.Box.Filler filler36;
+    private javax.swing.JTextField newOrderAmountField;
     private javax.swing.JTextField newOrderIdField;
-    private javax.swing.JTextField newOrderIdField1;
     private javax.swing.JPanel newOrderInputPanel;
     private javax.swing.JPanel newOrderNorthPanel;
     private javax.swing.JPanel newOrderPanel;

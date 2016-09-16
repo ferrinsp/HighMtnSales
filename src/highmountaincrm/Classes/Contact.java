@@ -1,9 +1,10 @@
 package highmountaincrm.Classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Contact {
+public class Contact implements Serializable {
 	
 	public String name;
 	public String company;
@@ -99,7 +100,6 @@ public class Contact {
                 display += " ";
             }
             display += company;            
-            System.out.println(display);//(name + " length: " + columnLength);
             return display;
         }
         public void updateSearch() {

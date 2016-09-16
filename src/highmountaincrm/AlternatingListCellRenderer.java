@@ -25,7 +25,7 @@ public class AlternatingListCellRenderer extends JLabel implements ListCellRende
    }
    public AlternatingListCellRenderer(Color even, Color odd, Color selected){
       setOpaque(true);
-      this.setFont(new Font("Courier Prime",0,24));
+      
       this.even = even;
       this.odd = odd;
       this.selected = selected;
@@ -33,7 +33,7 @@ public class AlternatingListCellRenderer extends JLabel implements ListCellRende
    @Override
    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         setText(value.toString());
-        
+        setFont(new Font("Courier New",0,20));
         if (index % 2 == 0) setBackground(even);
         else setBackground(odd);
 

@@ -119,12 +119,12 @@ public class ContactBuilder {
         filler21 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         phoneLabel = new javax.swing.JLabel();
         phoneField = new javax.swing.JTextField();
-        phoneComboBox = new javax.swing.JComboBox<>();
+        phoneComboBox = new javax.swing.JComboBox<String>();
         addPhone = new javax.swing.JButton();
         filler22 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(32767, 0));
         filler25 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        phoneJList = new javax.swing.JList<Phone>();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 5), new java.awt.Dimension(0, 5), new java.awt.Dimension(32767, 5));
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         eastPanel = new javax.swing.JPanel();
@@ -410,7 +410,7 @@ public class ContactBuilder {
         });
         phoneNorthPanel.add(phoneField);
 
-        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
+        phoneComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Business", "Personal", "Home", "Cell", "Fax", "Other" }));
         phoneComboBox.setNextFocusableComponent(addPhone);
         phoneNorthPanel.add(phoneComboBox);
 
@@ -436,15 +436,17 @@ public class ContactBuilder {
         phonePanel.add(phoneNorthPanel);
         phonePanel.add(filler25);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setMaximumSize(new java.awt.Dimension(32767, 60));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(35, 60));
 
-        jList1.setModel(phoneModel);
-        jList1.setCellRenderer(cellRenderer);
-        jList1.setMaximumSize(new java.awt.Dimension(200, 20));
-        jList1.setMinimumSize(new java.awt.Dimension(200, 20));
-        jList1.setPreferredSize(new java.awt.Dimension(200, 20));
-        jScrollPane1.setViewportView(jList1);
+        phoneJList.setModel(phoneModel);
+        phoneJList.setCellRenderer(cellRenderer);
+        phoneJList.setMaximumSize(new java.awt.Dimension(200, 20));
+        phoneJList.setMinimumSize(new java.awt.Dimension(200, 20));
+        phoneJList.setPreferredSize(new java.awt.Dimension(200, 20));
+        jScrollPane1.setViewportView(phoneJList);
 
         phonePanel.add(jScrollPane1);
 
@@ -529,6 +531,11 @@ public class ContactBuilder {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPhoneActionPerformed
+        String phoneText = phoneField.getText();
+        if (phoneText.isEmpty() || phoneText.length() < 7){
+            JOptionPane.showMessageDialog(this, "Phone field must have 7 or more digits","Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         Phone phone = new Phone(phoneField.getText(), (String)phoneComboBox.getSelectedItem());
         phoneModel.addElement(phone);
         phoneList.add(phone);
@@ -620,7 +627,6 @@ public class ContactBuilder {
     private javax.swing.Box.Filler filler9;
     private javax.swing.JLabel highMtnImage;
     private javax.swing.JLabel highMtnLabel;
-    private javax.swing.JList<Phone> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
@@ -629,6 +635,7 @@ public class ContactBuilder {
     private javax.swing.JPanel northTitlePanel;
     private javax.swing.JComboBox<String> phoneComboBox;
     private javax.swing.JTextField phoneField;
+    private javax.swing.JList<Phone> phoneJList;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JPanel phoneNorthPanel;
     private javax.swing.JPanel phonePanel;

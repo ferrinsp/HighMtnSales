@@ -1,15 +1,17 @@
 package highmountaincrm.Classes;
 
-public class Order {
+import java.io.Serializable;
 
-	public int orderId;
-	public int orderAmount;
-	public String orderNote;
+public class Order implements Serializable {
+
+	public String orderId;
+	public String orderAmount;
+	public String orderNote = "";
 	
-	public int getOrderId(){
+	public String getOrderId(){
 		return this.orderId;
 	}
-	public int getOrderAmount(){
+	public String getOrderAmount(){
 		return this.orderAmount;
 	}
 	public String getOrderNote(){
@@ -19,9 +21,8 @@ public class Order {
             orderNote = setOrderNote;
         }
         
-	public Order (int numOrder, int orderAmount, String orderNote) {
+	public Order (String numOrder, String orderAmount) {
 		this.orderId = numOrder;
 		this.orderAmount = orderAmount;
-		this.orderNote = orderNote;
 	}
 }

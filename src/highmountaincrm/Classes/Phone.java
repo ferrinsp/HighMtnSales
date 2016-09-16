@@ -1,6 +1,8 @@
 package highmountaincrm.Classes;
 
-public class Phone {
+import java.io.Serializable;
+
+public class Phone implements Serializable{
 	
 	public String phoneNumber;
 	public String type;
@@ -16,8 +18,11 @@ public class Phone {
 		this.type = type;
 	}	
         public String toString(){
-            return type + ": " +"(" + phoneNumber.substring(0, 3) + ")" +
-                    phoneNumber.substring(3,6) + "-" + phoneNumber.substring(6);
+            if (phoneNumber.length() >= 7)
+                return type + ": " +"(" + phoneNumber.substring(0, 3) + ")" +
+                        phoneNumber.substring(3,6) + "-" + phoneNumber.substring(6);
+            else
+                return type + ": " + phoneNumber;
         }
 }
 

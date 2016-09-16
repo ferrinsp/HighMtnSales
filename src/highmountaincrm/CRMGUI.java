@@ -2,6 +2,10 @@ package highmountaincrm;
 
 import highmountaincrm.Classes.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -32,7 +36,21 @@ public class CRMGUI extends javax.swing.JFrame {
 
 
     public CRMGUI() {
+        try{
+            FileInputStream fin = new FileInputStream("Contacts.ser");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            contactList = (ArrayList<Contact>)ois.readObject();
+            if(!contactList.isEmpty())
+                populateContactList(contactList);
+            ois.close();
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
         initComponents();
+        if(!contactList.isEmpty()){
+            contactJList.setSelectedIndex(0);
+            updateCurrent(contactJList.getSelectedValue());
+        }
         displayCurrent();
     }
 
@@ -139,6 +157,11 @@ public class CRMGUI extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(950, 600));
         setMinimumSize(new java.awt.Dimension(950, 600));
         setPreferredSize(new java.awt.Dimension(950, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         titleBar.setMaximumSize(new java.awt.Dimension(800, 30));
         titleBar.setMinimumSize(new java.awt.Dimension(800, 30));
@@ -778,8 +801,10 @@ public class CRMGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldFocusLost
 
     private void editContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editContactButtonActionPerformed
-        if(currentContact == null)
+        if(currentContact == null){
             JOptionPane.showMessageDialog(null, "No contact selected", "Error!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         ContactBuilder contactBuilder = new ContactBuilder(this);
         contactBuilder.createContactBuilder(currentContact);
         Contact temp = contactBuilder.getContact();
@@ -805,11 +830,22 @@ public class CRMGUI extends javax.swing.JFrame {
     private void orderJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_orderJListValueChanged
         currentOrder = orderJList.getSelectedValue();
         if(currentOrder != null){
-            orderIdLabel.setText(Integer.toString(currentOrder.getOrderId()));
-            orderAmountLabel.setText(Integer.toString(currentOrder.getOrderAmount()));
+            orderIdLabel.setText(currentOrder.getOrderId());
+            orderAmountLabel.setText(currentOrder.getOrderAmount());
             orderNotesTextArea.setText(currentOrder.getOrderNote());
         }
     }//GEN-LAST:event_orderJListValueChanged
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try{
+            FileOutputStream fos = new FileOutputStream("Contacts.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(contactList);
+            oos.close();
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+    }//GEN-LAST:event_formWindowClosing
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
             searchField.setText("Search");
