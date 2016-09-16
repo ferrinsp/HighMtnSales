@@ -269,6 +269,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="contactJListMouseClicked"/>
                     <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="contactJListValueChanged"/>
                   </Events>
                   <AuxValues>
@@ -1125,6 +1126,7 @@
                                 </Property>
                               </Properties>
                               <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="orderJListMouseClicked"/>
                                 <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="orderJListValueChanged"/>
                               </Events>
                               <AuxValues>
@@ -1189,13 +1191,16 @@
                                 <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.HorizontalGlue"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JButton" name="clearOrderButton">
+                            <Component class="javax.swing.JButton" name="removeOrderButton">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                                   <Connection code="buttonFont" type="code"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Remove"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeOrderButtonActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.Box$Filler" name="filler15">
                               <Properties>
@@ -1235,7 +1240,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="orderIdLabel">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Order Number:"/>
+                                <Property name="text" type="java.lang.String" value="Order Number: "/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="orderIdDisplay">
@@ -1253,7 +1258,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="orderAmountLabel">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="Order Amount:"/>
+                                <Property name="text" type="java.lang.String" value="Order Amount: "/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="orderAmountDisplay">
@@ -1282,6 +1287,9 @@
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="rows" type="int" value="5"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="orderNotesTextAreaKeyTyped"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1386,6 +1394,9 @@
                                   <Dimension value="[20, 200]"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="noteTextAreaKeyTyped"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>

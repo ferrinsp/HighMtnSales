@@ -34,6 +34,7 @@ public class OrderPanel{
         if(o != null){
             panel.newOrderIdField.setText(o.getOrderId());
             panel.newOrderAmountField.setText(o.getOrderAmount());
+            information = o;
             dialog = new JDialog(parent, "Edit Order", true);
         } else {
             dialog = new JDialog(parent, "New Order", true);

@@ -8,6 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+import javax.swing.JList;
 
 public class ContactBuilder {
     public Contact contact;
@@ -446,6 +447,11 @@ public class ContactBuilder {
         phoneJList.setMaximumSize(new java.awt.Dimension(200, 20));
         phoneJList.setMinimumSize(new java.awt.Dimension(200, 20));
         phoneJList.setPreferredSize(new java.awt.Dimension(200, 20));
+        phoneJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                phoneJListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(phoneJList);
 
         phonePanel.add(jScrollPane1);
@@ -572,6 +578,15 @@ public class ContactBuilder {
     private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
         addPhoneActionPerformed(evt);
     }//GEN-LAST:event_phoneFieldActionPerformed
+
+    private void phoneJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_phoneJListMouseClicked
+        JList list = (JList)evt.getSource();
+        if(evt.getClickCount() == 2){
+            int index = list.locationToIndex(evt.getPoint());
+            phoneList.remove(index);
+            phoneModel.remove(index);
+        }
+    }//GEN-LAST:event_phoneJListMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,7 @@
 package highmountaincrm.Classes;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Order implements Serializable {
 
@@ -25,4 +26,35 @@ public class Order implements Serializable {
 		this.orderId = numOrder;
 		this.orderAmount = orderAmount;
 	}
+        public String toString(){
+            return "Order Number: " + orderId + ", Order Amount: " + orderAmount;
+        }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Order other = (Order) obj;
+        if (!Objects.equals(this.orderId, other.orderId)) {
+            return false;
+        }
+        if (!Objects.equals(this.orderAmount, other.orderAmount)) {
+            return false;
+        }
+        if (!Objects.equals(this.orderNote, other.orderNote)) {
+            return false;
+        }
+        return true;
+    }
+        
 }

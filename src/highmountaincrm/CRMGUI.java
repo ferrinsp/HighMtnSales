@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class CRMGUI extends javax.swing.JFrame {
@@ -125,7 +126,7 @@ public class CRMGUI extends javax.swing.JFrame {
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         editOrderButton = new javax.swing.JButton();
         filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        clearOrderButton = new javax.swing.JButton();
+        removeOrderButton = new javax.swing.JButton();
         filler15 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         orderNotesPanel = new javax.swing.JPanel();
         orderInfoPanel = new javax.swing.JPanel();
@@ -224,6 +225,11 @@ public class CRMGUI extends javax.swing.JFrame {
         contactJList.setCellRenderer(cellRenderer);
         contactJList.setMaximumSize(new java.awt.Dimension(300, 360));
         contactJList.setPreferredSize(new java.awt.Dimension(300, 360));
+        contactJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contactJListMouseClicked(evt);
+            }
+        });
         contactJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 contactJListValueChanged(evt);
@@ -479,6 +485,11 @@ public class CRMGUI extends javax.swing.JFrame {
         orderJList.setMaximumSize(new java.awt.Dimension(20, 250));
         orderJList.setMinimumSize(new java.awt.Dimension(20, 80));
         orderJList.setPreferredSize(new java.awt.Dimension(20, 80));
+        orderJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderJListMouseClicked(evt);
+            }
+        });
         orderJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 orderJListValueChanged(evt);
@@ -511,9 +522,14 @@ public class CRMGUI extends javax.swing.JFrame {
         orderButtonPanel.add(editOrderButton);
         orderButtonPanel.add(filler11);
 
-        clearOrderButton.setFont(buttonFont);
-        clearOrderButton.setText("Remove");
-        orderButtonPanel.add(clearOrderButton);
+        removeOrderButton.setFont(buttonFont);
+        removeOrderButton.setText("Remove");
+        removeOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeOrderButtonActionPerformed(evt);
+            }
+        });
+        orderButtonPanel.add(removeOrderButton);
         orderButtonPanel.add(filler15);
 
         orderInfoDetailPanel.add(orderButtonPanel);
@@ -525,7 +541,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderInfoPanel.setLayout(new javax.swing.BoxLayout(orderInfoPanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        orderIdLabel.setText("Order Number:");
+        orderIdLabel.setText("Order Number: ");
         orderInfoPanel.add(orderIdLabel);
 
         orderIdDisplay.setMaximumSize(new java.awt.Dimension(72, 14));
@@ -533,7 +549,7 @@ public class CRMGUI extends javax.swing.JFrame {
         orderIdDisplay.setPreferredSize(new java.awt.Dimension(72, 14));
         orderInfoPanel.add(orderIdDisplay);
 
-        orderAmountLabel.setText("Order Amount:");
+        orderAmountLabel.setText("Order Amount: ");
         orderInfoPanel.add(orderAmountLabel);
         orderInfoPanel.add(orderAmountDisplay);
         orderInfoPanel.add(filler16);
@@ -542,6 +558,11 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderNotesTextArea.setColumns(20);
         orderNotesTextArea.setRows(5);
+        orderNotesTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                orderNotesTextAreaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(orderNotesTextArea);
 
         orderNotesPanel.add(jScrollPane1);
@@ -576,6 +597,11 @@ public class CRMGUI extends javax.swing.JFrame {
         noteTextArea.setMaximumSize(new java.awt.Dimension(20, 250));
         noteTextArea.setMinimumSize(new java.awt.Dimension(20, 18));
         noteTextArea.setPreferredSize(new java.awt.Dimension(20, 200));
+        noteTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                noteTextAreaKeyTyped(evt);
+            }
+        });
         noteScrollPane.setViewportView(noteTextArea);
 
         notesDetailPanel.add(noteScrollPane);
@@ -801,6 +827,9 @@ public class CRMGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldFocusLost
 
     private void editContactButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editContactButtonActionPerformed
+        editContact();
+    }//GEN-LAST:event_editContactButtonActionPerformed
+    private void editContact(){
         if(currentContact == null){
             JOptionPane.showMessageDialog(null, "No contact selected", "Error!", JOptionPane.ERROR_MESSAGE);
             return;
@@ -813,25 +842,26 @@ public class CRMGUI extends javax.swing.JFrame {
         updateMargin();
         displayCurrent();
         JOptionPane.showMessageDialog(null, "Record has been changed.");
-    }//GEN-LAST:event_editContactButtonActionPerformed
-
+    }
     private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
+        editOrder();
+    }//GEN-LAST:event_editOrderButtonActionPerformed
+    private void editOrder(){
         if(currentOrder == null) 
             JOptionPane.showMessageDialog(null, "No order selected", "Error!", JOptionPane.ERROR_MESSAGE);
         OrderPanel order = new OrderPanel(this);
         order.createOrderBuilder(currentOrder);
         Order temp = order.getOrder();
-        if(temp == null) return;
+        if(temp == null || temp.equals(currentOrder)) return;
         currentOrder = temp;
         displayCurrent();
         JOptionPane.showMessageDialog(null, "Record has been changed.");
-    }//GEN-LAST:event_editOrderButtonActionPerformed
-
+    }
     private void orderJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_orderJListValueChanged
         currentOrder = orderJList.getSelectedValue();
         if(currentOrder != null){
-            orderIdLabel.setText(currentOrder.getOrderId());
-            orderAmountLabel.setText(currentOrder.getOrderAmount());
+            orderIdDisplay.setText(currentOrder.getOrderId());
+            orderAmountDisplay.setText(currentOrder.getOrderAmount());
             orderNotesTextArea.setText(currentOrder.getOrderNote());
         }
     }//GEN-LAST:event_orderJListValueChanged
@@ -846,6 +876,47 @@ public class CRMGUI extends javax.swing.JFrame {
             //e.printStackTrace();
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void orderJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderJListMouseClicked
+        //JList list = (JList)evt.getSource();
+        if(evt.getClickCount() == 2){
+            //int index = list.locationToIndex(evt.getPoint());
+            //currentOrder = orderList.get(index);
+            currentOrder = orderJList.getSelectedValue();
+            if(currentOrder != null){
+                editOrder();
+            }
+        }
+    }//GEN-LAST:event_orderJListMouseClicked
+
+    private void orderNotesTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orderNotesTextAreaKeyTyped
+        if (currentOrder == null) return; // Maybe throw error dialog
+        currentOrder.setOrderNote(orderNotesTextArea.getText());
+        
+    }//GEN-LAST:event_orderNotesTextAreaKeyTyped
+
+    private void removeOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrderButtonActionPerformed
+        JList list = (JList)evt.getSource();
+        int index = list.getSelectedIndex();
+        if(index == -1) return; // Maybe throw error dialog
+        orderList.remove(index);
+        orderModel.remove(index);
+        displayCurrent();
+    }//GEN-LAST:event_removeOrderButtonActionPerformed
+
+    private void contactJListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactJListMouseClicked
+        if(evt.getClickCount() == 2){
+            currentContact = contactJList.getSelectedValue();
+            if(currentContact != null){
+                editContact();
+            }
+        }
+    }//GEN-LAST:event_contactJListMouseClicked
+
+    private void noteTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noteTextAreaKeyTyped
+        if (currentContact == null) return; // Maybe throw error dialog
+        currentContact.setNote(noteTextArea.getText());
+    }//GEN-LAST:event_noteTextAreaKeyTyped
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
             searchField.setText("Search");
@@ -907,23 +978,25 @@ public class CRMGUI extends javax.swing.JFrame {
         noteTextArea.setText(currentContact.getNote());
         
         if(!phoneModel.isEmpty()) phoneModel.clear();
-        if(!phoneList.isEmpty()) phoneList.clear();
-        for(Phone p: currentContact.getPhoneList()){
+        phoneList = currentContact.getPhoneList();
+        for(Phone p: phoneList)
             phoneModel.addElement(p);
-            phoneList.add(p);
-        }
         
         if(!orderModel.isEmpty()) orderModel.clear();
-        if(!orderList.isEmpty()) orderList.clear();
-        for(Order o: currentContact.getOrderList()){
+        orderList = currentContact.getOrderList();
+        for(Order o: orderList)
             orderModel.addElement(o);
-            orderList.add(o);
-        }
+        
         if(!orderModel.isEmpty()){
             orderJList.setSelectedIndex(0);
-            currentOrder = (Order)orderModel.get(0);
-            orderIdDisplay.setText(" " + currentOrder.getOrderId());
-            orderAmountDisplay.setText(" " + currentOrder.getOrderAmount());
+            currentOrder = orderJList.getSelectedValue();
+            orderIdDisplay.setText(currentOrder.getOrderId());
+            orderAmountDisplay.setText(currentOrder.getOrderAmount());
+            orderNotesTextArea.setText(currentOrder.getOrderNote());
+        } else {
+            orderIdDisplay.setText("");
+            orderAmountDisplay.setText("");
+            orderNotesTextArea.setText("");
         }
             
     }
@@ -984,7 +1057,6 @@ public class CRMGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton clearNoteButton;
-    private javax.swing.JButton clearOrderButton;
     private javax.swing.JButton clearOrderNotesButton;
     private javax.swing.JTabbedPane clientDisplay;
     private javax.swing.JPanel clientInfoLabelPanel;
@@ -1065,6 +1137,7 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JPanel phoneListPanel;
     private javax.swing.JScrollPane phoneScrollPane;
     private javax.swing.JMenuItem printList;
+    private javax.swing.JButton removeOrderButton;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel strAddress;
