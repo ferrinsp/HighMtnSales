@@ -1,13 +1,15 @@
 package highmountaincrm;
 
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 import highmountaincrm.Classes.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -23,7 +25,6 @@ public class CRMGUI extends javax.swing.JFrame {
     private DefaultListModel<Contact> contactModel = new DefaultListModel<>(); // Blessed be the diamond operator
     private DefaultListModel<Phone> phoneModel = new DefaultListModel<>();
     private DefaultListModel<Order> orderModel = new DefaultListModel<>();
-    private DefaultListModel<String> noteModel = new DefaultListModel<>();
     // Declare and initialize lists 
     private List<Contact> contactList = new ArrayList<>(); 
     private List<Contact> searchList = new ArrayList<>();
@@ -35,6 +36,8 @@ public class CRMGUI extends javax.swing.JFrame {
     private Font labelFont = new Font("Calibri", 3, 14);
     private Font tabFont = new Font("Calibri", Font.ITALIC, 12);
 
+    private String userEmail = "highmtnsales@gmail.com";
+    private String userPass = "Liat,tbai,fosafsn.";
 
     public CRMGUI() {
         try{
@@ -650,6 +653,11 @@ public class CRMGUI extends javax.swing.JFrame {
         printList.setMinimumSize(new java.awt.Dimension(125, 30));
         printList.setName(""); // NOI18N
         printList.setPreferredSize(new java.awt.Dimension(125, 30));
+        printList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printListActionPerformed(evt);
+            }
+        });
         menuFile.add(printList);
 
         menuBar.add(menuFile);
@@ -917,6 +925,10 @@ public class CRMGUI extends javax.swing.JFrame {
         if (currentContact == null) return; // Maybe throw error dialog
         currentContact.setNote(noteTextArea.getText());
     }//GEN-LAST:event_noteTextAreaKeyTyped
+
+    private void printListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printListActionPerformed
+        sendContactInfoEmail(currentContact);
+    }//GEN-LAST:event_printListActionPerformed
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
             searchField.setText("Search");
@@ -1018,6 +1030,46 @@ public class CRMGUI extends javax.swing.JFrame {
         orderIdDisplay.setText("");
         orderAmountDisplay.setText("");
         
+    }
+    private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress = new InternetAddress[to.length];
+
+            // To get the array of addresses
+            for( int i = 0; i < to.length; i++ ) {
+                toAddress[i] = new InternetAddress(to[i]);
+            }
+
+            for( int i = 0; i < toAddress.length; i++) {
+                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+            }
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        }
     }
     /**
      * @param args the command line arguments
@@ -1149,6 +1201,10 @@ public class CRMGUI extends javax.swing.JFrame {
     private javax.swing.JLabel strZipCode;
     private javax.swing.JPanel titleBar;
     // End of variables declaration//GEN-END:variables
+
+    private void sendContactInfoEmail(Contact contact) {
+        sendFromGMail(userEmail,userPass,new String[] {userEmail},"Contact Info: " + contact.getName(), contact.printableView());
+    }
 
     
 }
