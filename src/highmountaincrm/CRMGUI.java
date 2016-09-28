@@ -71,7 +71,7 @@ public class CRMGUI extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<Contact>();
+        contactJList = new javax.swing.JList<>();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -118,11 +118,11 @@ public class CRMGUI extends javax.swing.JFrame {
         filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<Phone>();
+        phoneJList = new javax.swing.JList<>();
         orderTab = new javax.swing.JPanel();
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<Order>();
+        orderJList = new javax.swing.JList<>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -201,6 +201,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         searchField.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
         searchField.setText("Search");
+        searchField.setToolTipText("Enter text to begin your search");
         searchField.setAlignmentX(1.0F);
         searchField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         searchField.setMaximumSize(new java.awt.Dimension(2147483647, 30));
@@ -224,7 +225,7 @@ public class CRMGUI extends javax.swing.JFrame {
         contactJList.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         contactJList.setModel(contactModel);
         contactJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        contactJList.setToolTipText("");
+        contactJList.setToolTipText("Double click a customer to edit information, additional information about the selected customer will appear to the right.");
         contactJList.setCellRenderer(cellRenderer);
         contactJList.setMaximumSize(new java.awt.Dimension(300, 360));
         contactJList.setPreferredSize(new java.awt.Dimension(300, 360));
@@ -368,6 +369,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.setMinimumSize(new java.awt.Dimension(100, 56));
         clientInfoPanel.setLayout(new javax.swing.BoxLayout(clientInfoPanel, javax.swing.BoxLayout.Y_AXIS));
 
+        strClientName.setToolTipText("Double click to edit");
         strClientName.setMaximumSize(new java.awt.Dimension(205, 25));
         strClientName.setMinimumSize(new java.awt.Dimension(205, 25));
         strClientName.setName(""); // NOI18N
@@ -380,6 +382,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.add(strClientName);
         clientInfoPanel.add(filler24);
 
+        strCompany.setToolTipText("Double click to edit");
         strCompany.setMaximumSize(new java.awt.Dimension(205, 25));
         strCompany.setMinimumSize(new java.awt.Dimension(205, 25));
         strCompany.setName(""); // NOI18N
@@ -392,6 +395,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.add(strCompany);
         clientInfoPanel.add(filler25);
 
+        strAddress.setToolTipText("Double click to edit");
         strAddress.setMaximumSize(new java.awt.Dimension(205, 25));
         strAddress.setMinimumSize(new java.awt.Dimension(205, 25));
         strAddress.setName(""); // NOI18N
@@ -404,6 +408,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.add(strAddress);
         clientInfoPanel.add(filler26);
 
+        strCity.setToolTipText("Double click to edit");
         strCity.setMaximumSize(new java.awt.Dimension(205, 25));
         strCity.setMinimumSize(new java.awt.Dimension(205, 25));
         strCity.setName(""); // NOI18N
@@ -416,6 +421,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.add(strCity);
         clientInfoPanel.add(filler27);
 
+        strState.setToolTipText("Double click to edit");
         strState.setMaximumSize(new java.awt.Dimension(205, 25));
         strState.setMinimumSize(new java.awt.Dimension(205, 25));
         strState.setName(""); // NOI18N
@@ -428,6 +434,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.add(strState);
         clientInfoPanel.add(filler28);
 
+        strZipCode.setToolTipText("Double click to edit");
         strZipCode.setMaximumSize(new java.awt.Dimension(205, 25));
         strZipCode.setMinimumSize(new java.awt.Dimension(205, 25));
         strZipCode.setName(""); // NOI18N
@@ -440,6 +447,7 @@ public class CRMGUI extends javax.swing.JFrame {
         clientInfoPanel.add(strZipCode);
         clientInfoPanel.add(filler29);
 
+        strEmail.setToolTipText("Double click to edit");
         strEmail.setMaximumSize(new java.awt.Dimension(205, 25));
         strEmail.setMinimumSize(new java.awt.Dimension(205, 25));
         strEmail.setName(""); // NOI18N
@@ -485,6 +493,7 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderJList.setModel(orderModel);
         orderJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        orderJList.setToolTipText("Double click to edit");
         orderJList.setMaximumSize(new java.awt.Dimension(20, 250));
         orderJList.setMinimumSize(new java.awt.Dimension(20, 80));
         orderJList.setPreferredSize(new java.awt.Dimension(20, 80));
@@ -539,7 +548,8 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderTab.add(orderInfoDetailPanel);
 
-        orderNotesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "List of Orders", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 12))); // NOI18N
+        orderNotesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Order Notes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 12))); // NOI18N
+        orderNotesPanel.setToolTipText("Select an order to display order number and order amount, each order can have specific notes related to it.");
         orderNotesPanel.setLayout(new javax.swing.BoxLayout(orderNotesPanel, javax.swing.BoxLayout.Y_AXIS));
 
         orderInfoPanel.setLayout(new javax.swing.BoxLayout(orderInfoPanel, javax.swing.BoxLayout.LINE_AXIS));
@@ -561,6 +571,8 @@ public class CRMGUI extends javax.swing.JFrame {
 
         orderNotesTextArea.setColumns(20);
         orderNotesTextArea.setRows(5);
+        orderNotesTextArea.setMaximumSize(new java.awt.Dimension(164, 94));
+        orderNotesTextArea.setMinimumSize(new java.awt.Dimension(164, 94));
         orderNotesTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 orderNotesTextAreaKeyTyped(evt);
@@ -597,9 +609,10 @@ public class CRMGUI extends javax.swing.JFrame {
         noteTextArea.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         noteTextArea.setLineWrap(true);
         noteTextArea.setRows(5);
+        noteTextArea.setToolTipText("Customer notes, each note is specific to a customer");
         noteTextArea.setMaximumSize(new java.awt.Dimension(20, 250));
-        noteTextArea.setMinimumSize(new java.awt.Dimension(20, 18));
-        noteTextArea.setPreferredSize(new java.awt.Dimension(20, 200));
+        noteTextArea.setMinimumSize(new java.awt.Dimension(20, 250));
+        noteTextArea.setPreferredSize(new java.awt.Dimension(20, 250));
         noteTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 noteTextAreaKeyTyped(evt);
@@ -625,9 +638,7 @@ public class CRMGUI extends javax.swing.JFrame {
         );
         notesTabLayout.setVerticalGroup(
             notesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(notesTabLayout.createSequentialGroup()
-                .addComponent(notesDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 44, Short.MAX_VALUE))
+            .addComponent(notesDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
         );
 
         clientDisplay.addTab("Notes", new javax.swing.ImageIcon(getClass().getResource("/Resource/note.png")), notesTab); // NOI18N
