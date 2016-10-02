@@ -693,13 +693,15 @@ public class CRMGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        ContactBuilder contact = new ContactBuilder(this);
-        Contact temp = contact.getContact();
-        if(temp == null) return;
+        Contact temp = contactJList.getSelectedValue();
+        if(temp == null) return;  
         contactList.remove(temp);
-        updateMargin();
         contactModel.removeElement(temp);
+        updateMargin();
         JOptionPane.showMessageDialog(null, 1 + "Record has been deleted.");
+        if(!contactModel.isEmpty()){
+            contactJList.setSelectedIndex(0);
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void lblTitlebarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblTitlebarActionPerformed
@@ -915,11 +917,14 @@ public class CRMGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_orderNotesTextAreaKeyTyped
 
     private void removeOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrderButtonActionPerformed
-        JList list = (JList)evt.getSource();
-        int index = list.getSelectedIndex();
-        if(index == -1) return; // Maybe throw error dialog
-        orderList.remove(index);
-        orderModel.remove(index);
+        Order temp = orderJList.getSelectedValue();
+        if(temp == null) return;  
+        orderList.remove(temp);
+        orderModel.removeElement(temp);
+        JOptionPane.showMessageDialog(null, 1 + " Record has been deleted.");
+        if(!orderModel.isEmpty()){
+            orderJList.setSelectedIndex(0);
+        }
         displayCurrent();
     }//GEN-LAST:event_removeOrderButtonActionPerformed
 
@@ -942,13 +947,12 @@ public class CRMGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_printListActionPerformed
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
-            searchField.setText("Search");
             searchList.clear();
             populateContactList(contactList);
         } else {
             searchList.clear();
             for(Contact c: contactList){
-                if(c.searchable.contains(searchText))
+                if(c.searchable.contains(searchText.toLowerCase()))
                     searchList.add(c);
             }
             populateContactList(searchList);
