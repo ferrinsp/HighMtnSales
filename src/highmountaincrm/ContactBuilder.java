@@ -14,7 +14,6 @@ public class ContactBuilder {
     public Contact contact;
     public JFrame parent;
     public JDialog dialog;
-    public Contact information;
     
     private Font buttonFont = new Font("Calibri", Font.ITALIC, 12);
     private Font labelFont = new Font("Calibri", 3, 14);

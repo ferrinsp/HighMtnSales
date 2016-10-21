@@ -129,7 +129,30 @@ public class Contact implements Serializable {
             builder.append("</html>");
             return builder.toString();
         }        
-
+        public String htmlView() {
+            StringBuilder builder = new StringBuilder();
+            String NEW_LINE = "<br>";
+            builder.append("<html><header><h3>");
+            builder.append("Customer Name: ").append(name).append(NEW_LINE);
+            builder.append("</h3></header>");
+            builder.append("<body>");
+            if(company != null && !company.isEmpty()) builder.append("Company: ").append(company).append(NEW_LINE);
+            if(address != null && !address.isEmpty()) builder.append("Address: ").append(address).append(NEW_LINE);
+            if(city != null && !city.isEmpty()) builder.append("City: ").append(city).append(NEW_LINE);
+            if(state != null && !state.isEmpty()) builder.append("State: ").append(state).append(NEW_LINE);
+            if(zipCode != null && !zipCode.isEmpty()) builder.append("ZipCode: ").append(zipCode).append(NEW_LINE);
+            if(email != null && !email.isEmpty()) builder.append("Email: ").append(email).append(NEW_LINE);
+            if(notes != null && !notes.isEmpty()) builder.append("Notes: ").append(notes).append(NEW_LINE);
+            if(!phoneList.isEmpty()){
+                builder.append("<h4>Phone Numbers: </h4>");
+                for(Phone p : phoneList)
+                    builder.append(p).append(NEW_LINE);
+            }
+            //builder.append("Order Information: ").append(orderList);
+            builder.append("</body>");
+            builder.append("</html>");
+            return builder.toString();
+        }  
     @Override
     public int hashCode() {
         int hash = 5;

@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 public class CRMGUI extends javax.swing.JFrame {
     private int max = 30; 
@@ -71,7 +72,7 @@ public class CRMGUI extends javax.swing.JFrame {
         searchField = new javax.swing.JTextField();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 15), new java.awt.Dimension(0, 15));
         contactScrollPane = new javax.swing.JScrollPane();
-        contactJList = new javax.swing.JList<>();
+        contactJList = new javax.swing.JList<Contact>();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 30), new java.awt.Dimension(0, 30));
         buttonPanel = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -118,11 +119,11 @@ public class CRMGUI extends javax.swing.JFrame {
         filler31 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 10));
         phoneListPanel = new javax.swing.JPanel();
         phoneScrollPane = new javax.swing.JScrollPane();
-        phoneJList = new javax.swing.JList<>();
+        phoneJList = new javax.swing.JList<Phone>();
         orderTab = new javax.swing.JPanel();
         orderInfoDetailPanel = new javax.swing.JPanel();
         orderScrollPane = new javax.swing.JScrollPane();
-        orderJList = new javax.swing.JList<>();
+        orderJList = new javax.swing.JList<Order>();
         orderButtonPanel = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         newOrderButton = new javax.swing.JButton();
@@ -229,6 +230,11 @@ public class CRMGUI extends javax.swing.JFrame {
         contactJList.setCellRenderer(cellRenderer);
         contactJList.setMaximumSize(new java.awt.Dimension(300, 360));
         contactJList.setPreferredSize(new java.awt.Dimension(300, 360));
+        contactJList.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                contactJListMouseMoved(evt);
+            }
+        });
         contactJList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contactJListMouseClicked(evt);
@@ -859,7 +865,11 @@ public class CRMGUI extends javax.swing.JFrame {
         contactBuilder.createContactBuilder(currentContact);
         Contact temp = contactBuilder.getContact();
         if(temp == null) return;
+        contactList.remove(currentContact);
+        contactModel.removeElement(currentContact);
         currentContact = temp;
+        contactList.add(temp);
+        updateContactModel();
         updateMargin();
         displayCurrent();
         JOptionPane.showMessageDialog(null, "Record has been changed.");
@@ -874,7 +884,11 @@ public class CRMGUI extends javax.swing.JFrame {
         order.createOrderBuilder(currentOrder);
         Order temp = order.getOrder();
         if(temp == null || temp.equals(currentOrder)) return;
+        orderList.remove(currentOrder);
+        orderModel.removeElement(max);
         currentOrder = temp;
+        orderList.add(temp);
+        updateOrderModel();
         displayCurrent();
         JOptionPane.showMessageDialog(null, "Record has been changed.");
     }
@@ -886,7 +900,16 @@ public class CRMGUI extends javax.swing.JFrame {
             orderNotesTextArea.setText(currentOrder.getOrderNote());
         }
     }//GEN-LAST:event_orderJListValueChanged
-
+    private void updateOrderModel(){
+        orderModel.clear();
+        for(Order o : orderList)
+            orderModel.addElement(o);
+    }
+    private void updateContactModel(){
+        contactModel.clear();
+        for(Contact c : contactList)
+            contactModel.addElement(c);
+    }
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try{
             FileOutputStream fos = new FileOutputStream("Contacts.ser");
@@ -945,6 +968,16 @@ public class CRMGUI extends javax.swing.JFrame {
     private void printListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printListActionPerformed
         sendContactInfoEmail(currentContact);
     }//GEN-LAST:event_printListActionPerformed
+
+    private void contactJListMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contactJListMouseMoved
+        JList l = (JList) evt.getSource();
+        ListModel m = l.getModel();
+        int index = l.locationToIndex(evt.getPoint());
+        if (index > -1){ 
+            Contact contact = (Contact)m.getElementAt(index);
+            l.setToolTipText(contact.htmlView());
+        }
+    }//GEN-LAST:event_contactJListMouseMoved
     private void search(String searchText){
         if(searchText == null || searchText.isEmpty()){
             searchList.clear();

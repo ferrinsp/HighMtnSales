@@ -85,7 +85,7 @@ public class OrderPanel{
         setPreferredSize(new java.awt.Dimension(209, 69));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
-        newOrderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "New Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 12))); // NOI18N
+        newOrderPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 6, 12, 6));
         newOrderPanel.setFont(new java.awt.Font("Calibri", 2, 12)); // NOI18N
         newOrderPanel.setMaximumSize(new java.awt.Dimension(209, 69));
         newOrderPanel.setPreferredSize(new java.awt.Dimension(209, 69));
